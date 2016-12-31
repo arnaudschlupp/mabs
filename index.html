@@ -23,8 +23,8 @@
     }
     
     html {
-        font: 16px/1.3 'Roboto', sans-serif;
-        color: hsla(200,10%,20%,1);
+        font: 10px/1.3 'Roboto', sans-serif;
+        color: hsla(200, 10%, 20%, 1);
     }
     
     body,
@@ -39,16 +39,16 @@
         margin: 0;
         padding: 0;
     }
-
+    
     img {
         display: block;
     }
-
+    
     a {
         color: hsla(200, 80%, 50%, 1);
         transition: opacity .2s ease-in-out;
     }
-
+    
     a:hover {
         text-decoration: none;
         opacity: .8;
@@ -56,11 +56,11 @@
 
     /* app content... */
     .app__content {
-        padding: 5rem 8rem;
+        padding: 1rem 2rem;
         position: relative;
         overflow: hidden;
     }
-
+    
     .app__content__background {
         position: absolute;
         top: 0;
@@ -69,82 +69,83 @@
         height: 100%;
         z-index: -1;
     }
-
+    
     .app__content__background .icon {
         position: absolute;
         width: 30rem;
         height: 30rem;
         color: hsla(200, 0%, 98%, 1);
     }
-
+    
     .app__content__background .icon:nth-child(even) {
         color: hsla(200, 50%, 98%, 1);
     }
-
+    
     .app__content__background .icon svg {
         width: 100%;
         height: 100%;
         fill: currentColor;
     }
-
+    
     .app__content__background .icon--1 {
         top: 20rem;
         right: 0;
         transform: rotate(20deg);
     }
-
+    
     .app__content__background .icon--2 {
         top: 100rem;
         left: 0;
         transform: rotate(-35deg);
     }
-
+    
     .app__content__background .icon--3 {
         top: 200rem;
         right: 0;
         transform: rotate(30deg);
     }
-
+    
     .app__content__background .icon--4 {
         top: 300rem;
         right: 35%;
         transform: rotate(10deg);
     }
-
+    
     .app__content__background .icon--5 {
         top: 410rem;
         left: -5rem;
         transform: rotate(-20deg);
     }
-
+    
     .app__content__background .icon--6 {
         top: 500rem;
         right: 0;
         transform: rotate(20deg);
     }
-
+    
     .app__content__background .icon--7 {
         top: 600rem;
         right: 50%;
         transform: rotate(-20deg);
     }
-
+    
     .app__content__background .icon--8 {
         top: 700rem;
         left: 50%;
         transform: rotate(20deg);
     }
-
+    
     .app__content__container {
         border-left: 2px solid hsla(200, 10%, 95%, 1);
         max-width: 80rem;
         margin: 0 auto;
     }
-    
+
     /* mabs... */
     .mabs {
         min-height: 15rem;
         display: flex;
+        flex-flow: row wrap;
     }
     
     .mabs:not(:last-child) {
@@ -157,7 +158,7 @@
         height: 15rem;
         background: hsla(200, 10%, 95%, 1);
     }
-
+    
     .mabs__quantity__number {
         font-size: 12rem;
         font-weight: 700;
@@ -165,7 +166,7 @@
         position: absolute;
         top: 50%;
         left: 0;
-        transform: translate(-50%,-50%);
+        transform: translate(2rem, -50%);
         color: hsla(200, 10%, 80%, 1);
         z-index: 1;
         user-select: none;
@@ -176,60 +177,60 @@
         font-weight: 700;
         line-height: 1;
         position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translate(calc(100% + 2rem),-50%);
+        top: 100%;
+        left: 0;
+        transform: translate(2rem, 2rem);
         color: hsla(200, 10%, 20%, 1);
         z-index: 1;
     }
-
+    
     .mabs__container {
-        width: 50%;
+        width: 100%;
         position: relative;
     }
-
+    
     .mabs__list {
         padding: 15rem 1.5rem 1.5rem 1.5rem;
         z-index: 1;
         display: flex;
         flex-flow: row wrap;
     }
-
+    
     .mab {
         flex-basis: 50%;
         font-size: .8rem;
         padding: 1rem;
     }
-
+    
     .mab__container {
         width: 100%;
         border-top: 5px solid hsla(200, 10%, 20%, 1);
     }
-
+    
     .mab__company {
         font-size: 1rem;
         font-weight: 700;
         font-family: 'Merriweather', serif;
         margin-top: 1rem;
     }
-
+    
     .mab__disease {
         margin-bottom: .5rem;
         font-size: .625rem;
     }
-
+    
     .mab__target {
         font-size: .875rem;
         font-weight: 300;
         color: hsla(200, 10%, 50%, 1);
         margin-bottom: 1rem;
     }
-
+    
     .mab__developer {
         margin-bottom: .5rem;
         font-size: .625rem;
     }
-
+    
     .mab__approval {
         font-size: .625rem;
         font-style: italic;
@@ -245,80 +246,80 @@
         display: flex;
         flex-flow: column nowrap;
     }
-
+    
     .app__header__container {
         max-width: 80rem;
         z-index: 1;
         padding: 1rem;
         margin: 0 auto;
     }
-
+    
     .app__header__bar {
         height: 5rem;
         width: 100%;
         display: flex;
     }
-
+    
     .app__header__bar__container {
         padding: 1rem;
         flex: 1;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid hsla(200,0%,100%,0.1);
+        border-bottom: 1px solid hsla(200, 0%, 100%, 0.1);
     }
-
+    
     .app__header__logo {
         width: 2.5rem;
         height: 2.5rem;
-        color: hsla(200,10%,100%,1);
+        color: hsla(200, 10%, 100%, 1);
     }
-
+    
     .app__header__logo svg {
         width: 100%;
         height: 100%;
         fill: currentColor;
         stroke: currentColor;
     }
-
+    
     .app__header__separator {
         flex: 1;
     }
-
+    
     .app__header__promotion {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         user-select: none;
     }
-
+    
     .app__header__promotion span {
         text-transform: uppercase;
         font-size: 0.625rem;
         letter-spacing: 2px;
         color: hsla(200, 10%, 50%, 1);
     }
-
+    
     .app__header__slogan__container {
         padding: 1rem;
-        max-width: 80%;
+        max-width: 100%;
         margin: 0 auto;
     }
-
+    
     .app__header__title {
         font-family: 'Merriweather', serif;
         font-weight: 700;
         font-size: 3rem;
-        color: hsla(200,10%,100%,1);
+        color: hsla(200, 10%, 100%, 1);
         padding: 1rem;
     }
-
+    
     .app__header__description {
         font-weight: 300;
         font-size: 1.5rem;
         color: hsla(200, 10%, 50%, 1);
         padding: 1rem;
     }
-
+    
     .app__header__particles,
     .app__footer__particles {
         position: absolute;
@@ -332,13 +333,14 @@
 
     /* menu... */
     .app__menu {
+        display: none;
         position: fixed;
         top: 0;
         right: 0;
         z-index: 2;
         padding: 1rem;
     }
-
+    
     .app__menu__item {
         line-height: 1rem;
         width: 100%;
@@ -348,11 +350,11 @@
         transition: all .2s ease-in-out;
         user-select: none;
     }
-
+    
     .app__menu__item:not(:last-child) {
         margin-bottom: 2px;
     }
-
+    
     .app__menu__item a {
         width: 100%;
         display: block;
@@ -363,11 +365,11 @@
         transform-origin: right;
         transition: all .2s ease-in-out;
     }
-
+    
     .app__menu__item:hover {
         border-color: hsla(200, 10%, 100%, 1);
     }
-
+    
     .app__menu__item:hover a {
         transform: scale(1.5);
         color: hsla(200, 10%, 100%, 1);
@@ -376,7 +378,7 @@
     .app__menu--light .app__menu__item:hover {
         border-color: hsla(200, 10%, 20%, 1);
     }
-
+    
     .app__menu--light .app__menu__item:hover a {
         color: hsla(200, 10%, 20%, 1);
     }
@@ -391,30 +393,30 @@
         display: flex;
         flex-flow: column nowrap;
     }
-
+    
     .app__footer__container {
         max-width: 80rem;
         z-index: 1;
         padding: 1rem;
         margin: 0 auto;
     }
-
+    
     .app__footer__conclusion {
         font-size: 2rem;
         color: hsla(200, 10%, 100%, 1);
         font-weight: 300;
     }
-
+    
     .app__footer__conclusion__container {
         padding: 1rem;
-        max-width: 80%;
+        max-width: 100%;
         margin: 0 auto;
     }
-
+    
     .app__footer__conclusion__container p {
         padding: 1rem;
     }
-
+    
     .app__footer__bar {
         border-top: 1px solid hsla(200, 50%, 10%, 1);
         display: flex;
@@ -423,7 +425,7 @@
         padding: 1rem;
         align-items: center;
     }
-
+    
     .app__footer__source {
         text-align: left;
         flex: 1;
@@ -433,14 +435,14 @@
         display: flex;
     }
 
-     /* source... */
+    /* source... */
     .app__source {
         text-align: center;
         position: relative;
         overflow: hidden;
         display: flex;
     }
-
+    
     .app__source__container {
         max-width: 80rem;
         z-index: 1;
@@ -452,8 +454,8 @@
     .app__section {
         position: relative;
         width: 100%;
-     }
-
+    }
+    
     .app__section:after,
     .app__section:before {
         content: '';
@@ -466,38 +468,38 @@
     }
     
     .app__section:after {
-        background: hsla(200,100%,90%,1);
+        background: hsla(200, 100%, 90%, 1);
         z-index: 0;
         animation: glow 5s infinite;
-     }
-
-     .app__section--top:after {
-         transform: rotate(-3deg) translate(-50%, -1rem);
-     }
-
-     .app__section--bottom:after {
-         transform: rotate(-3deg) translate(-50%, -2rem);     
-     }
-
-     .app__section:before {
+    }
+    
+    .app__section--top:after {
+        transform: rotate(-3deg) translate(-50%, 1rem);
+    }
+    
+    .app__section--bottom:after {
+        transform: rotate(-3deg) translate(-50%, -2rem);
+    }
+    
+    .app__section:before {
         background: hsla(200, 10%, 100%, 1);
         z-index: 1;
-     }
-     
-     .app__section--top:before, 
-     .app__section--bottom:before {
-         transform: rotate(-2deg) translate(-50%, 0);
-     }
-
-     @keyframes glow {
+    }
+    
+    .app__section--top:before,
+    .app__section--bottom:before {
+        transform: rotate(-2deg) translate(-50%, 0);
+    }
+    
+    @keyframes glow {
         0% {
-            background-color: hsla(200,100%,90%,1); 
+            background-color: hsla(200, 100%, 90%, 1);
         }
         50% {
-            background-color: hsla(200,100%,80%,1);
+            background-color: hsla(200, 100%, 80%, 1);
         }
         100% {
-            background-color: hsla(200,100%,90%,1);
+            background-color: hsla(200, 100%, 90%, 1);
         }
     }
 
@@ -511,19 +513,19 @@
     .icon {
         display: inline-flex;
     }
-
+    
     .icon svg {
         width: 100%;
         height: 100%;
         fill: currentColor;
         stroke: currentColor;
     }
-
+    
     .icon--l {
         width: 1rem;
         height: 1rem;
     }
-
+    
     .icon--heart {
         color: hsla(330, 80%, 50%, 1);
     }
@@ -532,11 +534,47 @@
     .app__authors {
         padding: 1rem;
     }
-
+    
     /* app links... */
     .app__links {
         padding: 1rem;
         font-size: .625rem;
+    }
+
+    /* mobile... */
+    @media (min-width: 60rem) {
+        html {
+            font: 16px/1.3 'Roboto', sans-serif;
+        }
+        .app__menu {
+            display: block;
+        }
+        .app__content {
+            padding: 5rem 8rem;
+        }
+        .mabs__container {
+            width: 50%;
+        }
+        .mabs__quantity__number {
+            transform: translate(-50%, -50%);
+        }
+        .mabs__date {
+            left: initial;
+            top: 50%;
+            right: 0;
+            transform: translate(calc(100% + 2rem), -50%);
+        }
+        .app__section--top:after {
+            transform: rotate(-3deg) translate(-50%, -1rem);
+        }
+        .app__header__slogan__container, 
+        .app__footer__conclusion__container {
+            max-width: 80%;
+        }
+        .app__header__promotion img {
+            width: 176px;
+            height: 30px;
+        }
     }
 </style>
 
@@ -569,6 +607,7 @@
         props: ['data'],
         template: `
             <li class="mabs" v-bind:id="data.date">
+                {{ data.something }}
                 <div class="mabs__quantity" v-bind:style="{ width: 50 / (10 / data.mabs.length) + '%' }">
                     <span class="mabs__quantity__number">{{ data.mabs.length }}</span>
                     <strong class="mabs__date">{{ data.date }}</strong>
@@ -605,7 +644,7 @@
                             <div class="app__header__separator"></div>
                             <div class="app__header__promotion">
                                 <span>Proposed by</span>
-                                <a href="http://labiotech.eu/" title="labiotech.eu"><img src="./assets/logo-header@2x.png" width="175px"/></a>
+                                <a href="http://labiotech.eu/" title="labiotech.eu"><img src="./assets/logo-header@2x.png" width="117px" height="20px"/></a>
                             </div>
                         </div>
                     </div>
