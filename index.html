@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Therapeutic monoclonal antibodies (sort by release date)</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="Therapeutic monoclonal antibodies" />
-    <meta property="og:description" content="The number of novel therapeutic antibodies that received EMA marketing approvals year after year." />
+    <meta property="og:description" content="The number of novel therapeutic antibodies that received EMA marketing approvals year after year."
+    />
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
     <link href="https://fonts.googleapis.com/css?family=Merriweather:700|Roboto:300,400,700" rel="stylesheet">
@@ -245,6 +247,7 @@
         position: relative;
         overflow: hidden;
         display: flex;
+        flex-flow: column nowrap;
     }
 
     .app__header__container {
@@ -336,7 +339,7 @@
         position: fixed;
         top: 0;
         right: 0;
-        z-index: 3;
+        z-index: 2;
         padding: 1rem;
     }
 
@@ -390,6 +393,7 @@
         overflow: hidden;
         color: hsla(200, 10%, 100%, 1);
         display: flex;
+        flex-flow: column nowrap;
     }
 
     .app__footer__container {
@@ -450,56 +454,43 @@
 
     /* section... */
     .app__section {
-        position: absolute;
+        position: relative;
         width: 100%;
-        z-index: 1;
      }
 
-     .app__section--top {
-         top: 0;
-     }
-
-     .app__section--bottom {
-         bottom: 0;
-     }
-
-    .app__section:after {
+    .app__section:after,
+    .app__section:before {
         content: '';
         display: block;
         width: 300%;
-        height: 8rem;
-        background: hsla(200,100%,90%,1);
+        height: 5rem;
         position: absolute;
-        z-index: -1;
-        transform: rotate(-3deg) translateX(-50%);
+        bottom: 0;
+        left: 0;
+    }
+    
+    .app__section:after {
+        background: hsla(200,100%,90%,1);
+        z-index: 0;
         animation: glow 5s infinite;
      }
 
      .app__section--top:after {
-        bottom: 2rem;
+         transform: rotate(-3deg) translate(-50%, -1rem);
      }
 
      .app__section--bottom:after {
-        bottom: -1rem;
+         transform: rotate(-3deg) translate(-50%, -2rem);     
      }
 
      .app__section:before {
-        content: '';
-        display: block;
-        width: 300%;
-        height: 8rem;
         background: hsla(200, 10%, 100%, 1);
-        position: absolute;
         z-index: 1;
-        transform: rotate(-2deg) translateX(-50%);
      }
      
-     .app__section--top:before {
-        bottom: 1rem;
-     }
-
+     .app__section--top:before, 
      .app__section--bottom:before {
-        bottom: -3rem;
+         transform: rotate(-2deg) translate(-50%, 0);
      }
 
      @keyframes glow {
