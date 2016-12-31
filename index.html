@@ -15,6 +15,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-89649414-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 </head>
 
 <style>
@@ -588,9 +599,9 @@
 </body>
 
 <script>
-    Vue.component('mab', {
-        props: ['data'],
-        template: `
+        Vue.component('mab', {
+            props: ['data'],
+            template: `
             <li class="mab">
                 <div class="mab__container">
                     <div class="mab__company"><strong>{{ data.name }}</strong></div>
@@ -601,11 +612,11 @@
                 </div>
             </li>
         `
-    });
+        });
 
-    Vue.component('mabs', {
-        props: ['data'],
-        template: `
+        Vue.component('mabs', {
+            props: ['data'],
+            template: `
             <li class="mabs" v-bind:id="data.date">
                 {{ data.something }}
                 <div class="mabs__quantity" v-bind:style="{ width: 50 / (10 / data.mabs.length) + '%' }">
@@ -619,10 +630,10 @@
                 </div>
             </li>
         `
-    });
+        });
 
-    Vue.component('app-header', {
-        template: `
+        Vue.component('app-header', {
+            template: `
             <div class="app__header" id="app__header">
                 <div class="app__header__container">
                     <div class="app__header__bar">
@@ -662,10 +673,10 @@
                 <div class="app__header__particles" id="app__header__particles"></div>
             </div>
         `
-    });
+        });
 
-    Vue.component('app-footer', {
-        template: `
+        Vue.component('app-footer', {
+            template: `
             <div class="app__footer" id="app__footer">
                 <div class="app__section app__section--top"></div>
                 <div class="app__footer__container">
@@ -683,10 +694,10 @@
                 <div class="app__footer__particles" id="app__footer__particles"></div>
             </div>
         `
-    });
+        });
 
-    Vue.component('app-source', {
-        template: `
+        Vue.component('app-source', {
+            template: `
             <div class="app__source">
                 <div class="app__source__container">
                     <div class="app__whitespace"></div>
@@ -704,11 +715,11 @@
                 </div>
             </div>
         `
-    });
+        });
 
-    Vue.component('app-content', {
-        props: ['data'],
-        template: `
+        Vue.component('app-content', {
+            props: ['data'],
+            template: `
             <div class="app__content" id="app__content">
                 <div class="app__content__background">
                     <div class="icon icon--1">
@@ -832,453 +843,453 @@
                 </ul>
             </div>
         `
-    });
+        });
 
-    var app = new Vue({
-        el: '#app',
-        data: {
-            mabs: [
-                {
-                    date: '2016',
-                    mabs: [
-                        {
-                            name: 'Olaratumab (LARTRUVO)',
-                            target: 'Human anti-PDGFRα IgG1',
-                            disease: 'Soft tissue sarcoma',
-                            developer: 'ImClone Systems / Eli Lilly',
-                            approval: '2016'
-                        },
-                        {
-                            name: 'Daclizumab (ZINBRYTA)',
-                            target: 'anti-IL-2R IgG1',
-                            disease: 'Multiple sclerosis; Prevention of renal transplant rejection',
-                            developer: 'PDL BioPharma / AbbVie / Biogen',
-                            approval: '2016'
-                        },
-                        {
-                            name: 'Reslizumab (CINQAERO, CINQAIR)',
-                            target: 'Humanized anti-IL-5 IgG4',
-                            disease: 'Eosinophilic asthma',
-                            developer: 'Celltech R&D / Schering-Plough / Teva Pharmaceutical Industries',
-                            approval: '2016'
-                        },
-                        {
-                            name: 'Ixekizumab (TALTZ)',
-                            target: 'Humanized anti-IL-17A IgG4',
-                            disease: 'Plaque psoriasis ',
-                            developer: 'Eli Lilly',
-                            approval: '2016'
-                        },
-                        {
-                            name: 'Elotuzumab (EMPLICITI)',
-                            target: 'Humanized anti-SLAMF7 IgG1',
-                            disease: 'Multiple myeloma',
-                            developer: 'PDL BioPharma / AbbVie / Bristol-Myers Squibb',
-                            approval: '2015'
-                        }
-                    ]
-                },
-                {
-                    date: '2015',
-                    mabs: [
-                        {
-                            name: 'Necitumumab (PORTRAZZA)',
-                            target: 'Human anti-EGFR IgG1',
-                            disease: 'Squamous non-small cell lung cancer ',
-                            developer: 'ImClone Systems / Ely Lilly',
-                            approval: '2015'
-                        },
-                        {
-                            name: 'Idarucizumab (PRAXBIND)',
-                            target: 'Humanized anti-dabigatran Fab fragment',
-                            disease: 'Blood coagulation disorders',
-                            developer: 'Boehringer Ingelheim',
-                            approval: '2015'
-                        },
-                        {
-                            name: 'Mepolizumab (NUCALA)',
-                            target: 'Humanized anti-IL-5 IgG1',
-                            disease: 'Eosinophilic asthma',
-                            developer: 'GlaxoSmithKline / McMaster University',
-                            approval: '2015'
-                        },
-                        {
-                            name: 'Alirocumab (PRALUENT)',
-                            target: 'Human anti-PCSK9 IgG1',
-                            disease: 'Hypercholesterolaemia',
-                            developer: 'Regeneron Pharmaceuticals / Sanofi-aventis',
-                            approval: '2015'
-                        },
-                        {
-                            name: 'Evolocumab (REPATHA)',
-                            target: 'Human anti-PCSK9 IgG2',
-                            disease: 'Hypercholesterolaemia',
-                            developer: 'Amgen / Amgen Astellas BioPharma',
-                            approval: '2015'
-                        },
+        var app = new Vue({
+            el: '#app',
+            data: {
+                mabs: [
+                    {
+                        date: '2016',
+                        mabs: [
+                            {
+                                name: 'Olaratumab (LARTRUVO)',
+                                target: 'Human anti-PDGFRα IgG1',
+                                disease: 'Soft tissue sarcoma',
+                                developer: 'ImClone Systems / Eli Lilly',
+                                approval: '2016'
+                            },
+                            {
+                                name: 'Daclizumab (ZINBRYTA)',
+                                target: 'anti-IL-2R IgG1',
+                                disease: 'Multiple sclerosis; Prevention of renal transplant rejection',
+                                developer: 'PDL BioPharma / AbbVie / Biogen',
+                                approval: '2016'
+                            },
+                            {
+                                name: 'Reslizumab (CINQAERO, CINQAIR)',
+                                target: 'Humanized anti-IL-5 IgG4',
+                                disease: 'Eosinophilic asthma',
+                                developer: 'Celltech R&D / Schering-Plough / Teva Pharmaceutical Industries',
+                                approval: '2016'
+                            },
+                            {
+                                name: 'Ixekizumab (TALTZ)',
+                                target: 'Humanized anti-IL-17A IgG4',
+                                disease: 'Plaque psoriasis ',
+                                developer: 'Eli Lilly',
+                                approval: '2016'
+                            },
+                            {
+                                name: 'Elotuzumab (EMPLICITI)',
+                                target: 'Humanized anti-SLAMF7 IgG1',
+                                disease: 'Multiple myeloma',
+                                developer: 'PDL BioPharma / AbbVie / Bristol-Myers Squibb',
+                                approval: '2015'
+                            }
+                        ]
+                    },
+                    {
+                        date: '2015',
+                        mabs: [
+                            {
+                                name: 'Necitumumab (PORTRAZZA)',
+                                target: 'Human anti-EGFR IgG1',
+                                disease: 'Squamous non-small cell lung cancer ',
+                                developer: 'ImClone Systems / Ely Lilly',
+                                approval: '2015'
+                            },
+                            {
+                                name: 'Idarucizumab (PRAXBIND)',
+                                target: 'Humanized anti-dabigatran Fab fragment',
+                                disease: 'Blood coagulation disorders',
+                                developer: 'Boehringer Ingelheim',
+                                approval: '2015'
+                            },
+                            {
+                                name: 'Mepolizumab (NUCALA)',
+                                target: 'Humanized anti-IL-5 IgG1',
+                                disease: 'Eosinophilic asthma',
+                                developer: 'GlaxoSmithKline / McMaster University',
+                                approval: '2015'
+                            },
+                            {
+                                name: 'Alirocumab (PRALUENT)',
+                                target: 'Human anti-PCSK9 IgG1',
+                                disease: 'Hypercholesterolaemia',
+                                developer: 'Regeneron Pharmaceuticals / Sanofi-aventis',
+                                approval: '2015'
+                            },
+                            {
+                                name: 'Evolocumab (REPATHA)',
+                                target: 'Human anti-PCSK9 IgG2',
+                                disease: 'Hypercholesterolaemia',
+                                developer: 'Amgen / Amgen Astellas BioPharma',
+                                approval: '2015'
+                            },
 
-                        {
-                            name: 'Dinutuximab (UNITUXIN)',
-                            target: 'Human/mouse chimeric anti-GD2 IgG1',
-                            disease: 'Neuroblastoma',
-                            developer: 'National Cancer Institute (USA) / St. John of God Foundation / United Therapeutics Corporation',
-                            approval: '2015'
-                        },
+                            {
+                                name: 'Dinutuximab (UNITUXIN)',
+                                target: 'Human/mouse chimeric anti-GD2 IgG1',
+                                disease: 'Neuroblastoma',
+                                developer: 'National Cancer Institute (USA) / St. John of God Foundation / United Therapeutics Corporation',
+                                approval: '2015'
+                            },
 
-                        {
-                            name: 'Secukinumab (COSENTYX)',
-                            target: 'Human anti-IL-17A IgG1',
-                            disease: 'Ankylosing spondylitis; Psoriasis arthritis; Plaque psoriasis ',
-                            developer: 'Alcon / Novartis / Icahn School of Medicine at Mount Sinai',
-                            approval: '2015'
-                        },
-                        {
-                            name: 'Nivolumab (OPDIVO)',
-                            target: 'Human anti-PD-1 IgG4',
-                            disease: 'Malignant melanoma; Non-small cell lung cancer; Renal cell carcinoma',
-                            developer: 'AIO Studien gGmbH / Bristol-Myers Squibb / Duke University Medical Center / Eli Lilly / Grupo Espanol Multidisciplinar de Melanoma / Incyte Corporation / Janssen Research & Development / Kyoto University / Kyowa Hakko Kirin / Medarex / National Cancer Institute (USA) / Nektar Therapeutics / Neon Therapeutics / Netherlands Cancer Institute / Ono Pharmaceutical / Pharmacyclics / Seattle Genetics / Sidney Kimmel Comprehensive Cancer Center at Johns Hopkins / University of Texas M. D. Anderson Cancer Center',
-                            approval: '2014'
-                        },
-                        {
-                            name: 'Blinatumomab (BLINCYTO) ',
-                            target: 'Murine anti-CD19/CD3 bispecific tandem scFv',
-                            disease: 'Acute lymphoblastic leukemia ',
-                            developer: 'Amgen / Astellas Pharma / M. D. Anderson Cancer Center / Micromet Inc / National Cancer Institute (USA)',
-                            approval: '2014'
-                        },
-                        {
-                            name: 'Pembrolizumab (KEYTRUDA)',
-                            target: 'Humanized anti-PD-1 IgG4 Malignant melanoma; Non-small cell lung cancer',
-                            disease: 'Advaxis / Amgen / BioLineRx / Canadian Cancer Trials Group / Dana-Farber Cancer Institute / DNAtrix / Eli Lilly / Fox Chase Cancer Center / Genexine / Hoosier Cancer Research Network / ImmunoGen / Incyte Corporation / M. D. Anderson Cancer Center / Massachusetts General Hospital / Memorial',
-                            developer: 'Sloan-Kettering Cancer Center / Merck & Co / National Cancer Institute (USA) / Northwestern University / Plexxikon / Providence Health & Services / Sidney Kimmel Comprehensive Cancer Center at Johns Hopkins / The Leukemia & Lymphoma Society / TG Therapeutic Inc / University of Birmingham / University of Pittsburgh / Washington University School of Medicine / Yale University',
-                            approval: '2014'
-                        }
-                    ]
-                },
-                {
-                    date: '2014',
-                    mabs: [
-                        {
-                            name: 'Ramucirumab (CYRAMZA)',
-                            target: 'Human anti-VEGFR-2 IgG1',
-                            disease: 'Gastric cancer; Metastatic colorectal cancer; Non-small cell lung cancer ',
-                            developer: 'AstraZeneca / Dyax / Eli Lilly / Merck Sharp & Dohme / University of Texas M. D. Anderson Cancer Center',
-                            approval: '2014'
-                        },
-                        {
-                            name: 'Vedolizumab (ENTYVIO)',
-                            target: 'Humanized anti-α4β7 integrin IgG1 ',
-                            disease: 'Crohn’s disease; Ulcerative colitis ',
-                            developer: 'Millennium Pharmaceuticals / Takeda / Takeda Oncology ',
-                            approval: '2014'
-                        },
-                        {
-                            name: 'Siltuximab (SYLVANT)',
-                            target: 'Human/mouse chimeric anti-IL-6 IgG1 ',
-                            disease: 'Multricetric Castleman’s disease ',
-                            developer: 'Centocor / Janssen Biotech',
-                            approval: '2014'
-                        },
-                        {
-                            name: 'Obinutuzumab (GAZYVA)',
-                            target: 'Glycoengineered humanized anti-CD20 IgG1',
-                            disease: 'Chronic lymphocytic leukaemia; Follicular lymphoma ',
-                            developer: 'GLYCART Biotechnology / Biogen Idec / Chugai Pharmaceutical / Dana-Farber Cancer Institute / Genentech / Nippon Shinyaku / OHSU Knight Cancer Institute / Roche',
-                            approval: '2013'
-                        }
-                    ]
-                },
-                {
-                    date: '2013',
-                    mabs: [
-                        {
-                            name: 'Alemtuzumab (LEMTRADA)',
-                            target: 'Humanized anti-CD52 IgG1 ',
-                            disease: 'Multiple sclerosis ',
-                            developer: 'Withdrawn or marketing discontinued for the first approved indication',
-                            approval: '2014'
-                        },
-                        {
-                            name: 'Ado-trastuzumab emtansine (KADCYLA)',
-                            target: 'Humanized ADC anti-HER2 IgG1 ',
-                            disease: 'Breast cancer ',
-                            developer: 'Chugai Pharmaceutical / Genentech / ImmunoGen / Memorial Sloan-Kettering Cancer Center / Roche',
-                            approval: '2013'
-                        },
-                        {
-                            name: 'Pertuzumab (PERJETA)',
-                            target: 'Humanized anti-HER2 IgG1 ',
-                            disease: 'Breast Cancer ',
-                            developer: 'Chugai Pharmaceutical / FONDAZIONE DEL PIEMONTE PER L\'ONCOLOGIA IRCC DI CANDIOLO / Genentech / Japan Breast Cancer Research Group / Roche / West German Study Group',
-                            approval: '2012'
-                        }
-                    ]
-                },
-                {
-                    date: '2012',
-                    mabs: [{
-                        name: 'Brentuximab vedotin (ADCETRIS)',
-                        target: 'Human/mouse chimeric ADC anti-CD30 IgG1 ',
-                        disease: 'Hodgkin lymphoma; Systemic anaplastic large cell lymphoma ',
-                        developer: 'Bristol-Myers Squibb / Fondazione Italiana Linfomi / Lymphoma Academic Research Organisation / Seattle Genetics / Takeda / Takeda Oncology'
-                    }]
-                },
-                {
-                    date: '2011',
-                    mabs: [
-                        {
-                            name: 'Belimumab (BENLYSTA)',
-                            target: 'Human anti-BLyS IgG1 ',
-                            disease: 'Systemic lupus erythematosus ',
-                            developer: 'Assistance Publique Hopitaux de Paris / Cancer Trials Australia / Cambridge Antibody Technology / GlaxoSmithKline / Hospital for Special Surgery / Human Genome Sciences / North Shore-Long Island Jewish Health System / University of Pennsylvania',
-                            approval: '2011'
-                        },
-
-                        {
-                            name: 'Ipilimumab (YERVOY)',
-                            target: 'Human anti-CTLA-4 IgG1 ',
-                            disease: 'Malignant melanoma ',
-                            developer: 'Bristol-Myers Squibb / Dana-Farber Cancer Institute / European Thoracic Oncology Platform / Grupo Espanol Multidisciplinar de Melanoma / Ludwig Institute for Cancer Research / Medarex / Memorial Sloan-Kettering Cancer Center / Ono Pharmaceutical / University of California at San Francisco / University of Texas M. D. Anderson Cancer Center',
-                            approval: '2011'
-                        }
-                    ]
-                },
-                {
-                    date: '2010',
-                    mabs: [
-                        {
-                            name: 'Denosumab (PROLIA)',
-                            target: 'Human anti-RANKL IgG2 ',
-                            disease: 'Bone disorders; Male osteoporosis; Osteoporosis; Postmenopausal osteoporosis',
-                            developer: 'Amgen / Daiichi Sankyo Company / European Thoracic Oncology Platform / GlaxoSmithKline',
-                            approval: '2010'
-                        },
-
-                        {
-                            name: 'Ofatumumab (ARZERRA)',
-                            target: 'Human anti-CD20 IgG1 ',
-                            disease: 'Chronic lymphocytic leukemia ',
-                            developer: 'Genmab / GlaxoSmithKline / National Cancer Centre (Singapore) / Novartis / Roswell Park Cancer Institute / University Health Network',
-                            approval: '2009'
-                        }
-                    ]
-                },
-                {
-                    date: '2009',
-                    mabs: [
-                        {
-                            name: 'Tocilizumab (ROACTEMRA)',
-                            target: 'Humanized anti-IL-6R IgG1 ',
-                            disease: 'Active systemic juvenile idiopathic arthritis; Juvenile idiopathic polyarthritis; Rheumatoid arthritis ',
-                            developer: 'Assistance Publique Hopitaux de Paris / Chugai Pharmaceutical / Hospital for Special Surgery / JW Pharmaceutical / Osaka University / Roche / University Hospital Inselspital / University of Bern / University of Pittsburgh',
-                            approval: '2010'
-                        },
-
-                        {
-                            name: 'Canakinumab (ILARIS)',
-                            target: 'Human anti-IL-1β IgG1 ',
-                            disease: 'Cryopyrin-associated periodic syndromes; Gouty arthritis; Still’s disease',
-                            developer: 'Novartis / Triemli hospital / University Hospital Tubingen / University Hospital Zurich ',
-                            approval: '2009'
-                        },
-
-                        {
-                            name: 'Golimumab (SIMPONI)',
-                            target: 'Human anti-TNF-α IgG1 ',
-                            disease: 'Axial spondyloarthritis; Polyarticular juvenile; Psoriatic arthritis; Rheumatoid arthritis; Ulcerative colitis idiopathic arthritis',
-                            developer: 'Centocor / Centocor Ortho Biotech / Janssen Biotech / Janssen Pharmaceutical KK / Merck & Co / Medarex / Mitsubishi Tanabe Pharma Corporation',
-                            approval: '2009'
-                        },
-
-                        {
-                            name: 'Ustekinumab (STELARA)',
-                            target: 'Human anti-IL-12/23 IgG1 ',
-                            disease: 'Crohn’s disease; Plaque psoriasis; Psoriatic arthritis',
-                            developer: 'Centocor / Janssen Biotech / Janssen Pharmaceutical KK / Janssen-Cilag / Medarex',
-                            approval: '2009'
-                        },
-
-                        {
-                            name: 'Certolizumab pegol (CIMZIA)',
-                            target: 'Humanized PEGylated anti-TNF-α Fab fragment',
-                            disease: 'Axial spondyloarthritis; Psoriatic arthritis; Rheumatoid arthritis ',
-                            developer: 'Astellas Pharma / Dermira / UCB / University of Southampton',
-                            approval: '2009'
+                            {
+                                name: 'Secukinumab (COSENTYX)',
+                                target: 'Human anti-IL-17A IgG1',
+                                disease: 'Ankylosing spondylitis; Psoriasis arthritis; Plaque psoriasis ',
+                                developer: 'Alcon / Novartis / Icahn School of Medicine at Mount Sinai',
+                                approval: '2015'
+                            },
+                            {
+                                name: 'Nivolumab (OPDIVO)',
+                                target: 'Human anti-PD-1 IgG4',
+                                disease: 'Malignant melanoma; Non-small cell lung cancer; Renal cell carcinoma',
+                                developer: 'AIO Studien gGmbH / Bristol-Myers Squibb / Duke University Medical Center / Eli Lilly / Grupo Espanol Multidisciplinar de Melanoma / Incyte Corporation / Janssen Research & Development / Kyoto University / Kyowa Hakko Kirin / Medarex / National Cancer Institute (USA) / Nektar Therapeutics / Neon Therapeutics / Netherlands Cancer Institute / Ono Pharmaceutical / Pharmacyclics / Seattle Genetics / Sidney Kimmel Comprehensive Cancer Center at Johns Hopkins / University of Texas M. D. Anderson Cancer Center',
+                                approval: '2014'
+                            },
+                            {
+                                name: 'Blinatumomab (BLINCYTO) ',
+                                target: 'Murine anti-CD19/CD3 bispecific tandem scFv',
+                                disease: 'Acute lymphoblastic leukemia ',
+                                developer: 'Amgen / Astellas Pharma / M. D. Anderson Cancer Center / Micromet Inc / National Cancer Institute (USA)',
+                                approval: '2014'
+                            },
+                            {
+                                name: 'Pembrolizumab (KEYTRUDA)',
+                                target: 'Humanized anti-PD-1 IgG4 Malignant melanoma; Non-small cell lung cancer',
+                                disease: 'Advaxis / Amgen / BioLineRx / Canadian Cancer Trials Group / Dana-Farber Cancer Institute / DNAtrix / Eli Lilly / Fox Chase Cancer Center / Genexine / Hoosier Cancer Research Network / ImmunoGen / Incyte Corporation / M. D. Anderson Cancer Center / Massachusetts General Hospital / Memorial',
+                                developer: 'Sloan-Kettering Cancer Center / Merck & Co / National Cancer Institute (USA) / Northwestern University / Plexxikon / Providence Health & Services / Sidney Kimmel Comprehensive Cancer Center at Johns Hopkins / The Leukemia & Lymphoma Society / TG Therapeutic Inc / University of Birmingham / University of Pittsburgh / Washington University School of Medicine / Yale University',
+                                approval: '2014'
+                            }
+                        ]
+                    },
+                    {
+                        date: '2014',
+                        mabs: [
+                            {
+                                name: 'Ramucirumab (CYRAMZA)',
+                                target: 'Human anti-VEGFR-2 IgG1',
+                                disease: 'Gastric cancer; Metastatic colorectal cancer; Non-small cell lung cancer ',
+                                developer: 'AstraZeneca / Dyax / Eli Lilly / Merck Sharp & Dohme / University of Texas M. D. Anderson Cancer Center',
+                                approval: '2014'
+                            },
+                            {
+                                name: 'Vedolizumab (ENTYVIO)',
+                                target: 'Humanized anti-α4β7 integrin IgG1 ',
+                                disease: 'Crohn’s disease; Ulcerative colitis ',
+                                developer: 'Millennium Pharmaceuticals / Takeda / Takeda Oncology ',
+                                approval: '2014'
+                            },
+                            {
+                                name: 'Siltuximab (SYLVANT)',
+                                target: 'Human/mouse chimeric anti-IL-6 IgG1 ',
+                                disease: 'Multricetric Castleman’s disease ',
+                                developer: 'Centocor / Janssen Biotech',
+                                approval: '2014'
+                            },
+                            {
+                                name: 'Obinutuzumab (GAZYVA)',
+                                target: 'Glycoengineered humanized anti-CD20 IgG1',
+                                disease: 'Chronic lymphocytic leukaemia; Follicular lymphoma ',
+                                developer: 'GLYCART Biotechnology / Biogen Idec / Chugai Pharmaceutical / Dana-Farber Cancer Institute / Genentech / Nippon Shinyaku / OHSU Knight Cancer Institute / Roche',
+                                approval: '2013'
+                            }
+                        ]
+                    },
+                    {
+                        date: '2013',
+                        mabs: [
+                            {
+                                name: 'Alemtuzumab (LEMTRADA)',
+                                target: 'Humanized anti-CD52 IgG1 ',
+                                disease: 'Multiple sclerosis ',
+                                developer: 'Withdrawn or marketing discontinued for the first approved indication',
+                                approval: '2014'
+                            },
+                            {
+                                name: 'Ado-trastuzumab emtansine (KADCYLA)',
+                                target: 'Humanized ADC anti-HER2 IgG1 ',
+                                disease: 'Breast cancer ',
+                                developer: 'Chugai Pharmaceutical / Genentech / ImmunoGen / Memorial Sloan-Kettering Cancer Center / Roche',
+                                approval: '2013'
+                            },
+                            {
+                                name: 'Pertuzumab (PERJETA)',
+                                target: 'Humanized anti-HER2 IgG1 ',
+                                disease: 'Breast Cancer ',
+                                developer: 'Chugai Pharmaceutical / FONDAZIONE DEL PIEMONTE PER L\'ONCOLOGIA IRCC DI CANDIOLO / Genentech / Japan Breast Cancer Research Group / Roche / West German Study Group',
+                                approval: '2012'
+                            }
+                        ]
+                    },
+                    {
+                        date: '2012',
+                        mabs: [{
+                            name: 'Brentuximab vedotin (ADCETRIS)',
+                            target: 'Human/mouse chimeric ADC anti-CD30 IgG1 ',
+                            disease: 'Hodgkin lymphoma; Systemic anaplastic large cell lymphoma ',
+                            developer: 'Bristol-Myers Squibb / Fondazione Italiana Linfomi / Lymphoma Academic Research Organisation / Seattle Genetics / Takeda / Takeda Oncology'
                         }]
-                },
-                {
-                    date: '2007',
-                    mabs: [{
-                        name: 'Eculizumab (SOLIRIS)',
-                        target: 'Humanized anti-complement C5 IgG2/4 ',
-                        disease: 'Atypical haemolytic uremic syndrome; Paroxysmal nocturnal haemoglobinuria ',
-                        developer: 'Alexion Pharmaceuticals / Brigham and Women’s Hospital / Chiba University',
-                        approval: '2007'
                     },
-
                     {
-                        name: 'Ranibizumab (LUCENTIS)',
-                        target: 'Fab fragment derived from Bevacizumab, a humanized anti-VEGF IgG1 (AVASTIN)',
-                        disease: 'Age-related macular degeneration; Choroidal neovascularisation; Macular oedema ',
-                        developer: 'Genentech / Manhattan Eye, Ear & Throat Hospital / Novartis Ophthalmics / University of Bonn',
-                        approval: '2006'
+                        date: '2011',
+                        mabs: [
+                            {
+                                name: 'Belimumab (BENLYSTA)',
+                                target: 'Human anti-BLyS IgG1 ',
+                                disease: 'Systemic lupus erythematosus ',
+                                developer: 'Assistance Publique Hopitaux de Paris / Cancer Trials Australia / Cambridge Antibody Technology / GlaxoSmithKline / Hospital for Special Surgery / Human Genome Sciences / North Shore-Long Island Jewish Health System / University of Pennsylvania',
+                                approval: '2011'
+                            },
+
+                            {
+                                name: 'Ipilimumab (YERVOY)',
+                                target: 'Human anti-CTLA-4 IgG1 ',
+                                disease: 'Malignant melanoma ',
+                                developer: 'Bristol-Myers Squibb / Dana-Farber Cancer Institute / European Thoracic Oncology Platform / Grupo Espanol Multidisciplinar de Melanoma / Ludwig Institute for Cancer Research / Medarex / Memorial Sloan-Kettering Cancer Center / Ono Pharmaceutical / University of California at San Francisco / University of Texas M. D. Anderson Cancer Center',
+                                approval: '2011'
+                            }
+                        ]
                     },
-
                     {
-                        name: 'Panitumumab (VECTIBIX)',
-                        target: 'Human anti-EGFR IgG2 ',
-                        disease: 'Colorectal cancer; Rectum cancer',
-                        developer: 'Amgen / Takeda / University of Texas M. D. Anderson Cancer Center',
-                        approval: '2006'
-                    }
-                    ]
-                },
+                        date: '2010',
+                        mabs: [
+                            {
+                                name: 'Denosumab (PROLIA)',
+                                target: 'Human anti-RANKL IgG2 ',
+                                disease: 'Bone disorders; Male osteoporosis; Osteoporosis; Postmenopausal osteoporosis',
+                                developer: 'Amgen / Daiichi Sankyo Company / European Thoracic Oncology Platform / GlaxoSmithKline',
+                                approval: '2010'
+                            },
 
-                {
-                    date: '2006',
-                    mabs: [
+                            {
+                                name: 'Ofatumumab (ARZERRA)',
+                                target: 'Human anti-CD20 IgG1 ',
+                                disease: 'Chronic lymphocytic leukemia ',
+                                developer: 'Genmab / GlaxoSmithKline / National Cancer Centre (Singapore) / Novartis / Roswell Park Cancer Institute / University Health Network',
+                                approval: '2009'
+                            }
+                        ]
+                    },
+                    {
+                        date: '2009',
+                        mabs: [
+                            {
+                                name: 'Tocilizumab (ROACTEMRA)',
+                                target: 'Humanized anti-IL-6R IgG1 ',
+                                disease: 'Active systemic juvenile idiopathic arthritis; Juvenile idiopathic polyarthritis; Rheumatoid arthritis ',
+                                developer: 'Assistance Publique Hopitaux de Paris / Chugai Pharmaceutical / Hospital for Special Surgery / JW Pharmaceutical / Osaka University / Roche / University Hospital Inselspital / University of Bern / University of Pittsburgh',
+                                approval: '2010'
+                            },
+
+                            {
+                                name: 'Canakinumab (ILARIS)',
+                                target: 'Human anti-IL-1β IgG1 ',
+                                disease: 'Cryopyrin-associated periodic syndromes; Gouty arthritis; Still’s disease',
+                                developer: 'Novartis / Triemli hospital / University Hospital Tubingen / University Hospital Zurich ',
+                                approval: '2009'
+                            },
+
+                            {
+                                name: 'Golimumab (SIMPONI)',
+                                target: 'Human anti-TNF-α IgG1 ',
+                                disease: 'Axial spondyloarthritis; Polyarticular juvenile; Psoriatic arthritis; Rheumatoid arthritis; Ulcerative colitis idiopathic arthritis',
+                                developer: 'Centocor / Centocor Ortho Biotech / Janssen Biotech / Janssen Pharmaceutical KK / Merck & Co / Medarex / Mitsubishi Tanabe Pharma Corporation',
+                                approval: '2009'
+                            },
+
+                            {
+                                name: 'Ustekinumab (STELARA)',
+                                target: 'Human anti-IL-12/23 IgG1 ',
+                                disease: 'Crohn’s disease; Plaque psoriasis; Psoriatic arthritis',
+                                developer: 'Centocor / Janssen Biotech / Janssen Pharmaceutical KK / Janssen-Cilag / Medarex',
+                                approval: '2009'
+                            },
+
+                            {
+                                name: 'Certolizumab pegol (CIMZIA)',
+                                target: 'Humanized PEGylated anti-TNF-α Fab fragment',
+                                disease: 'Axial spondyloarthritis; Psoriatic arthritis; Rheumatoid arthritis ',
+                                developer: 'Astellas Pharma / Dermira / UCB / University of Southampton',
+                                approval: '2009'
+                            }]
+                    },
+                    {
+                        date: '2007',
+                        mabs: [{
+                            name: 'Eculizumab (SOLIRIS)',
+                            target: 'Humanized anti-complement C5 IgG2/4 ',
+                            disease: 'Atypical haemolytic uremic syndrome; Paroxysmal nocturnal haemoglobinuria ',
+                            developer: 'Alexion Pharmaceuticals / Brigham and Women’s Hospital / Chiba University',
+                            approval: '2007'
+                        },
+
                         {
-                            name: 'Natalizumab (TYSABRI)',
-                            target: 'Humanized anti-α4-integrin IgG4 ',
-                            disease: 'Multiple sclerosis ',
-                            developer: 'Biogen / Biogen Idec / Elan Corporation / Perrigo',
-                            approval: '2004'
+                            name: 'Ranibizumab (LUCENTIS)',
+                            target: 'Fab fragment derived from Bevacizumab, a humanized anti-VEGF IgG1 (AVASTIN)',
+                            disease: 'Age-related macular degeneration; Choroidal neovascularisation; Macular oedema ',
+                            developer: 'Genentech / Manhattan Eye, Ear & Throat Hospital / Novartis Ophthalmics / University of Bonn',
+                            approval: '2006'
+                        },
+
+                        {
+                            name: 'Panitumumab (VECTIBIX)',
+                            target: 'Human anti-EGFR IgG2 ',
+                            disease: 'Colorectal cancer; Rectum cancer',
+                            developer: 'Amgen / Takeda / University of Texas M. D. Anderson Cancer Center',
+                            approval: '2006'
                         }
-                    ]
-                },
-
-                {
-                    date: '2005',
-                    mabs: [{
-                        name: 'Bevacizumab (AVASTIN)',
-                        target: 'Humanized anti-VEGF IgG1 ',
-                        disease: 'Cancer of the cervix; Cancer of the colon or rectum; Cancer of the fallopian tube; Cancer of the peritoneum; Epithelial cancer of the ovary; Kidney cancer; Metastatic breast cancer; Non-small cell lung cancer',
-                        developer: 'All Ireland Cooperative Oncology Research Group/ Austrian Breast & Colorectal Cancer Study Group/ Beth Israel Deaconess Medical Center/ Breast Cancer Research Foundation/ Brigham and Women\'s Hospital/ Cancer and Leukemia Group B/ Cancer Research UK/ Chugai Pharmaceutical/ Dana-Farber Cancer Institute/ Duke University/ European Organisation for Research and Treatment of Cancer/ European Thoracic Oncology Platform/ Genentech/ Hackensack University Medical Center/ Japan Breast Cancer Research Group/ Massachusetts General Hospital/ Medical University of South Carolina/ Melanoma Research Foundation Breakthrough Consortium/ Memorial Sloan-Kettering Cancer Center/ National Cancer Institute (USA) / National Comprehensive Cancer Network/ NCIC Clinical Trials Group/ North Central Cancer Treatment Group/ NSABP Foundation/ Peter MacCallum Cancer Centre/ Roche / Royal Marsden NHS Foundation Trust/ Sanofi / Sarcoma Alliance for Research through Collaboration/ SCRI Development Innovations/ South Eastern European Research Oncology Group/ Spanish Cooperative Group for Digestive Tumour Therapy/ Spanish Lung Cancer Group/ Stanford University School of Medicine/ SWOG / The Catalan Institute of Oncology/ University College London/ University of Alabama at Birmingham/ University of Arkansas System/ University of California, Davis/ University of Tennessee/ University of Texas M. D. Anderson Cancer Center/ US Oncology Research/ West German Study Group/ Xijing Hospital',
-                        approval: '2004'
+                        ]
                     },
 
                     {
-                        name: 'Omalizumab (XOLAIR)',
-                        target: 'Humanized anti-IgE IgG1',
-                        disease: 'Chronic (long-term) spontaneous urticarial; Severe persistent asthma',
-                        developer: 'Genentech / Novartis',
-                        approval: '2003'
-                    }]
-                },
+                        date: '2006',
+                        mabs: [
+                            {
+                                name: 'Natalizumab (TYSABRI)',
+                                target: 'Humanized anti-α4-integrin IgG4 ',
+                                disease: 'Multiple sclerosis ',
+                                developer: 'Biogen / Biogen Idec / Elan Corporation / Perrigo',
+                                approval: '2004'
+                            }
+                        ]
+                    },
 
-                {
-                    date: '2004',
-                    mabs: [
-                        {
-                            name: 'Cetuximab (ERBITUX)',
-                            target: 'Human/mouse chimeric anti-EGFR IgG1 ',
-                            disease: 'Colorectal or rectal cancer; Head and neck cancer',
-                            developer: 'Array BioPharma / Bristol-Myers Squibb / Centre Jean Perrin / Eli Lilly / Merck KGaA / New York University School of Medicine / Novartis / Pierre Fabre / Roche / University of California System / University of Michigan Comprehensive Cancer Center',
+                    {
+                        date: '2005',
+                        mabs: [{
+                            name: 'Bevacizumab (AVASTIN)',
+                            target: 'Humanized anti-VEGF IgG1 ',
+                            disease: 'Cancer of the cervix; Cancer of the colon or rectum; Cancer of the fallopian tube; Cancer of the peritoneum; Epithelial cancer of the ovary; Kidney cancer; Metastatic breast cancer; Non-small cell lung cancer',
+                            developer: 'All Ireland Cooperative Oncology Research Group/ Austrian Breast & Colorectal Cancer Study Group/ Beth Israel Deaconess Medical Center/ Breast Cancer Research Foundation/ Brigham and Women\'s Hospital/ Cancer and Leukemia Group B/ Cancer Research UK/ Chugai Pharmaceutical/ Dana-Farber Cancer Institute/ Duke University/ European Organisation for Research and Treatment of Cancer/ European Thoracic Oncology Platform/ Genentech/ Hackensack University Medical Center/ Japan Breast Cancer Research Group/ Massachusetts General Hospital/ Medical University of South Carolina/ Melanoma Research Foundation Breakthrough Consortium/ Memorial Sloan-Kettering Cancer Center/ National Cancer Institute (USA) / National Comprehensive Cancer Network/ NCIC Clinical Trials Group/ North Central Cancer Treatment Group/ NSABP Foundation/ Peter MacCallum Cancer Centre/ Roche / Royal Marsden NHS Foundation Trust/ Sanofi / Sarcoma Alliance for Research through Collaboration/ SCRI Development Innovations/ South Eastern European Research Oncology Group/ Spanish Cooperative Group for Digestive Tumour Therapy/ Spanish Lung Cancer Group/ Stanford University School of Medicine/ SWOG / The Catalan Institute of Oncology/ University College London/ University of Alabama at Birmingham/ University of Arkansas System/ University of California, Davis/ University of Tennessee/ University of Texas M. D. Anderson Cancer Center/ US Oncology Research/ West German Study Group/ Xijing Hospital',
                             approval: '2004'
                         },
 
                         {
-                            name: 'Ibritumomab tiuxetan (ZEVALIN)',
-                            target: 'Murine anto-CD20 IgG1 ',
-                            disease: 'Non-Hodgkin’s lymphoma ',
-                            developer: 'Bayer Yakuhin / Biogen / Biogen Idec / CASI Pharmaceuticals / Dana-Farber Cancer Institute / Schering Korea / Spectrum Pharmaceuticals / Tufts-New England Medical Center',
+                            name: 'Omalizumab (XOLAIR)',
+                            target: 'Humanized anti-IgE IgG1',
+                            disease: 'Chronic (long-term) spontaneous urticarial; Severe persistent asthma',
+                            developer: 'Genentech / Novartis',
+                            approval: '2003'
+                        }]
+                    },
+
+                    {
+                        date: '2004',
+                        mabs: [
+                            {
+                                name: 'Cetuximab (ERBITUX)',
+                                target: 'Human/mouse chimeric anti-EGFR IgG1 ',
+                                disease: 'Colorectal or rectal cancer; Head and neck cancer',
+                                developer: 'Array BioPharma / Bristol-Myers Squibb / Centre Jean Perrin / Eli Lilly / Merck KGaA / New York University School of Medicine / Novartis / Pierre Fabre / Roche / University of California System / University of Michigan Comprehensive Cancer Center',
+                                approval: '2004'
+                            },
+
+                            {
+                                name: 'Ibritumomab tiuxetan (ZEVALIN)',
+                                target: 'Murine anto-CD20 IgG1 ',
+                                disease: 'Non-Hodgkin’s lymphoma ',
+                                developer: 'Bayer Yakuhin / Biogen / Biogen Idec / CASI Pharmaceuticals / Dana-Farber Cancer Institute / Schering Korea / Spectrum Pharmaceuticals / Tufts-New England Medical Center',
+                                approval: '2002'
+                            }]
+                    },
+                    {
+                        date: '2003',
+                        mabs: [{
+                            name: 'Adalimumab (HUMIRA)',
+                            target: 'Human anti-TNF-α IgG1 ',
+                            disease: 'Axial spondyloarthritis; Crohn’s disease; Enthesitis-related arthritis; Hidradenitis suppurativa; Non-infectious uveitis; Polyarticular juvenile idiopathic arthritis; Psoriatic arthritis; Rheumatoid arthritis; Ulcerative colitis',
+                            developer: 'AbbVie/ Cambridge Antibody Technology / Eisai Co Ltd / Interstitial Cystitis Study ',
                             approval: '2002'
                         }]
-                },
-                {
-                    date: '2003',
-                    mabs: [{
-                        name: 'Adalimumab (HUMIRA)',
-                        target: 'Human anti-TNF-α IgG1 ',
-                        disease: 'Axial spondyloarthritis; Crohn’s disease; Enthesitis-related arthritis; Hidradenitis suppurativa; Non-infectious uveitis; Polyarticular juvenile idiopathic arthritis; Psoriatic arthritis; Rheumatoid arthritis; Ulcerative colitis',
-                        developer: 'AbbVie/ Cambridge Antibody Technology / Eisai Co Ltd / Interstitial Cystitis Study ',
-                        approval: '2002'
-                    }]
-                },
-
-                {
-                    date: '2000',
-                    mabs: [{
-                        name: 'Trastuzumab (HERCEPTIN)',
-                        target: 'Humanized anti-HER2 IgG1 ',
-                        disease: 'Breast cancer; Gastric cancer',
-                        developer: 'Chugai Pharmaceutical / Dana-Farber Cancer Institute / FONDAZIONE DEL PIEMONTE PER L\'ONCOLOGIA IRCC DI CANDIOLO / Genentech / Memorial Sloan-Kettering Cancer Center / Northwestern University / Roche / Sanofi / West German Study Group',
-                        approval: '1998'
-                    }]
-                },
-
-
-                {
-                    date: '1999',
-                    mabs: [{
-                        name: 'Infliximab (REMICADE)',
-                        target: 'Human/mouse chimeric anti-TNF-α IgG1 ',
-                        disease: 'Ankylosing spondylitis; Crohn\'s disease; Psoriasis; Psoriatic arthritis; Rheumatoid arthritis; Ulcerative colitis',
-                        developer: 'Centocor / Janssen Biotech / Merck & Co / Mitsubishi Tanabe Pharma Corporation / National Jewish Medical and Research Center / Xian-Janssen',
-                        approval: '1998'
                     },
 
                     {
-                        name: 'Palivizumab (SYNAGIS)',
-                        target: 'Humanized anti-RSV IgG1 ',
-                        disease: 'Prevention of the respiratory syncytial virus infections',
-                        developer: 'MedImmune',
-                        approval: '1998'
-                    }
-                    ]
-                },
+                        date: '2000',
+                        mabs: [{
+                            name: 'Trastuzumab (HERCEPTIN)',
+                            target: 'Humanized anti-HER2 IgG1 ',
+                            disease: 'Breast cancer; Gastric cancer',
+                            developer: 'Chugai Pharmaceutical / Dana-Farber Cancer Institute / FONDAZIONE DEL PIEMONTE PER L\'ONCOLOGIA IRCC DI CANDIOLO / Genentech / Memorial Sloan-Kettering Cancer Center / Northwestern University / Roche / Sanofi / West German Study Group',
+                            approval: '1998'
+                        }]
+                    },
 
-                {
-                    date: '1998',
-                    mabs: [
-                        {
-                            name: 'Basiliximab (SIMULECT)',
-                            target: 'Human/mouse chimeric anti-IL-2R IgG1 ',
-                            disease: 'Prevention of the renal transplant rejection; Transplant rejection',
-                            developer: 'Cerimon Pharmaceuticals / Novartis ',
-                            approval: '1998 '
+
+                    {
+                        date: '1999',
+                        mabs: [{
+                            name: 'Infliximab (REMICADE)',
+                            target: 'Human/mouse chimeric anti-TNF-α IgG1 ',
+                            disease: 'Ankylosing spondylitis; Crohn\'s disease; Psoriasis; Psoriatic arthritis; Rheumatoid arthritis; Ulcerative colitis',
+                            developer: 'Centocor / Janssen Biotech / Merck & Co / Mitsubishi Tanabe Pharma Corporation / National Jewish Medical and Research Center / Xian-Janssen',
+                            approval: '1998'
                         },
+
                         {
-                            name: 'Rituximab (MABTHERA)',
-                            target: 'Human/mouse chimeric anti-CD20 IgG1 ',
-                            disease: 'Chronic lymphocytic leukaemia; Diffuse large B cell non-Hodgkin’s lymphoma; Follicular lymphoma; Microscopic polyangiitis; Rheumatoid arthritis; Wegener\'s granulomatosis',
-                            developer: 'Biogen / Biogen Idec / Chugai Pharmaceutical / Genentech / Halozyme Therapeutics / Hoosier Cancer Research Network / Oregon Health & Science University / Roche / SCRI Development Innovations / Takeda Oncology / University of Texas M. D. Anderson Cancer Center / University of Tours/ Zenyaku Kogyo',
-                            approval: '1997'
+                            name: 'Palivizumab (SYNAGIS)',
+                            target: 'Humanized anti-RSV IgG1 ',
+                            disease: 'Prevention of the respiratory syncytial virus infections',
+                            developer: 'MedImmune',
+                            approval: '1998'
                         }
-                    ]
-                },
+                        ]
+                    },
 
-                {
-                    date: '1995',
-                    mabs: [{
-                        name: 'Abciximab (REOPRO)',
-                        target: 'Human/mouse chimeric anti-glycoprotein IIb/IIIa receptor Fab fragment',
-                        disease: 'Myocardial infarction; Prevention of blood clots in angioplasty; Unstable angina',
-                        developer: 'Centocor / Eli Lilly / Janssen Biotech',
-                        approval: '1994'
-                    }]
-                }
-            ]
-        }
-    });
+                    {
+                        date: '1998',
+                        mabs: [
+                            {
+                                name: 'Basiliximab (SIMULECT)',
+                                target: 'Human/mouse chimeric anti-IL-2R IgG1 ',
+                                disease: 'Prevention of the renal transplant rejection; Transplant rejection',
+                                developer: 'Cerimon Pharmaceuticals / Novartis ',
+                                approval: '1998 '
+                            },
+                            {
+                                name: 'Rituximab (MABTHERA)',
+                                target: 'Human/mouse chimeric anti-CD20 IgG1 ',
+                                disease: 'Chronic lymphocytic leukaemia; Diffuse large B cell non-Hodgkin’s lymphoma; Follicular lymphoma; Microscopic polyangiitis; Rheumatoid arthritis; Wegener\'s granulomatosis',
+                                developer: 'Biogen / Biogen Idec / Chugai Pharmaceutical / Genentech / Halozyme Therapeutics / Hoosier Cancer Research Network / Oregon Health & Science University / Roche / SCRI Development Innovations / Takeda Oncology / University of Texas M. D. Anderson Cancer Center / University of Tours/ Zenyaku Kogyo',
+                                approval: '1997'
+                            }
+                        ]
+                    },
 
-    // Particles effects...
-    particlesJS.load('app__header__particles', './settings/particles.json', () => { });
-    particlesJS.load('app__footer__particles', './settings/particles.json', () => { });
+                    {
+                        date: '1995',
+                        mabs: [{
+                            name: 'Abciximab (REOPRO)',
+                            target: 'Human/mouse chimeric anti-glycoprotein IIb/IIIa receptor Fab fragment',
+                            disease: 'Myocardial infarction; Prevention of blood clots in angioplasty; Unstable angina',
+                            developer: 'Centocor / Eli Lilly / Janssen Biotech',
+                            approval: '1994'
+                        }]
+                    }
+                ]
+            }
+        });
 
-    // Scroll class toggles...
-    const app__headerHeight = document.querySelector('#app__header').clientHeight;
-    const app__contentHeight = document.querySelector('#app__content').clientHeight;
-    const app__menu = document.querySelector('.app__menu');
-    const app__menuClass = 'app__menu--light'
+        // Particles effects...
+        particlesJS.load('app__header__particles', './settings/particles.json', () => { });
+        particlesJS.load('app__footer__particles', './settings/particles.json', () => { });
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > app__headerHeight && window.scrollY < (app__headerHeight + app__contentHeight)) {
-            app__menu.classList.add(app__menuClass);
-        } else {
-            app__menu.classList.remove(app__menuClass);
-        }
-    });        
+        // Scroll class toggles...
+        const app__headerHeight = document.querySelector('#app__header').clientHeight;
+        const app__contentHeight = document.querySelector('#app__content').clientHeight;
+        const app__menu = document.querySelector('.app__menu');
+        const app__menuClass = 'app__menu--light'
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > app__headerHeight && window.scrollY < (app__headerHeight + app__contentHeight)) {
+                app__menu.classList.add(app__menuClass);
+            } else {
+                app__menu.classList.remove(app__menuClass);
+            }
+        });        
 </script>
 
 </html>
