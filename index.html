@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Therapeutic monoclonal antibodies (sort by release date)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Therapeutic monoclonal antibodies" />
+    <meta property="og:description" content="The number of novel therapeutic antibodies that received EMA marketing approvals year after year." />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:700|Roboto:300,400,700" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+</head>
+
+<style>
+    :root {
+        --height--mabs: 15rem;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    html {
+        font: 16px/1.3 'Roboto', sans-serif;
+        color: hsla(200,10%,20%,1);
+    }
+    
+    body,
+    h1,
+    h2,
+    p {
+        margin: 0;
+    }
+    
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    img {
+        display: block;
+    }
+
+    a {
+        color: hsla(200, 80%, 50%, 1);
+        transition: opacity .2s ease-in-out;
+    }
+
+    a:hover {
+        text-decoration: none;
+        opacity: .8;
+    }
+
+    /* app content... */
+    .app__content {
+        padding: 5rem 8rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .app__content__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .app__content__background .icon {
+        position: absolute;
+        width: 30rem;
+        height: 30rem;
+        color: hsla(200, 0%, 98%, 1);
+    }
+
+    .app__content__background .icon:nth-child(even) {
+        color: hsla(200, 50%, 98%, 1);
+    }
+
+    .app__content__background .icon svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+    }
+
+    .app__content__background .icon--1 {
+        top: 20rem;
+        right: 0;
+        transform: rotate(20deg);
+    }
+
+    .app__content__background .icon--2 {
+        top: 100rem;
+        left: 0;
+        transform: rotate(-35deg);
+    }
+
+    .app__content__background .icon--3 {
+        top: 200rem;
+        right: 0;
+        transform: rotate(30deg);
+    }
+
+    .app__content__background .icon--4 {
+        top: 300rem;
+        right: 35%;
+        transform: rotate(10deg);
+    }
+
+    .app__content__background .icon--5 {
+        top: 410rem;
+        left: -5rem;
+        transform: rotate(-20deg);
+    }
+
+    .app__content__background .icon--6 {
+        top: 500rem;
+        right: 0;
+        transform: rotate(20deg);
+    }
+
+    .app__content__background .icon--7 {
+        top: 600rem;
+        right: 50%;
+        transform: rotate(-20deg);
+    }
+
+    .app__content__background .icon--8 {
+        top: 700rem;
+        left: 50%;
+        transform: rotate(20deg);
+    }
+
+    .app__content__container {
+        border-left: 2px solid hsla(200, 10%, 95%, 1);
+        max-width: 80rem;
+        margin: 0 auto;
+    }
+    
+    /* mabs... */
+    .mabs {
+        min-height: var(--height--mabs);
+        display: flex;
+    }
+    
+    .mabs:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+    
+    .mabs__quantity {
+        position: relative;
+        width: 50%;
+        height: var(--height--mabs);
+        background: hsla(200, 10%, 95%, 1);
+    }
+
+    .mabs__quantity__number {
+        font-size: 12rem;
+        font-weight: 700;
+        line-height: 1;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-50%,-50%);
+        color: hsla(200, 10%, 80%, 1);
+        z-index: 1;
+        user-select: none;
+    }
+    
+    .mabs__date {
+        font-size: 12rem;
+        font-weight: 700;
+        line-height: 1;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(calc(100% + 2rem),-50%);
+        color: hsla(200, 10%, 20%, 1);
+        z-index: 1;
+    }
+
+    .mabs__container {
+        width: 50%;
+        position: relative;
+    }
+
+    .mabs__list {
+        padding: 15rem 1.5rem 1.5rem 1.5rem;
+        z-index: 1;
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .mab {
+        flex-basis: 50%;
+        font-size: .8rem;
+        padding: 1rem;
+    }
+
+    .mab__container {
+        width: 100%;
+        border-top: 5px solid hsla(200, 10%, 20%, 1);
+    }
+
+    .mab__company {
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: 'Merriweather', serif;
+        margin-top: 1rem;
+    }
+
+    .mab__disease {
+        margin-bottom: .5rem;
+        font-size: .625rem;
+    }
+
+    .mab__target {
+        font-size: .875rem;
+        font-weight: 300;
+        color: hsla(200, 10%, 50%, 1);
+        margin-bottom: 1rem;
+    }
+
+    .mab__developer {
+        margin-bottom: .5rem;
+        font-size: .625rem;
+    }
+
+    .mab__approval {
+        font-size: .625rem;
+        font-style: italic;
+        color: hsla(200, 10%, 50%, 1);
+    }
+
+    /* header... */
+    .app__header {
+        text-align: center;
+        background: hsla(200, 50%, 5%, 1);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+    }
+
+    .app__header__container {
+        max-width: 80rem;
+        z-index: 1;
+        padding: 1rem;
+        margin: 0 auto;
+    }
+
+    .app__header__bar {
+        height: 5rem;
+        width: 100%;
+        display: flex;
+    }
+
+    .app__header__bar__container {
+        padding: 1rem;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid hsla(200,0%,100%,0.1);
+    }
+
+    .app__header__logo {
+        width: 2.5rem;
+        height: 2.5rem;
+        color: hsla(200,10%,100%,1);
+    }
+
+    .app__header__logo svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+        stroke: currentColor;
+    }
+
+    .app__header__separator {
+        flex: 1;
+    }
+
+    .app__header__promotion {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        user-select: none;
+    }
+
+    .app__header__promotion span {
+        text-transform: uppercase;
+        font-size: 0.625rem;
+        letter-spacing: 2px;
+        color: hsla(200, 10%, 50%, 1);
+    }
+
+    .app__header__slogan__container {
+        padding: 1rem;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .app__header__title {
+        font-family: 'Merriweather', serif;
+        font-weight: 700;
+        font-size: 3rem;
+        color: hsla(200,10%,100%,1);
+        padding: 1rem;
+    }
+
+    .app__header__description {
+        font-weight: 300;
+        font-size: 1.5rem;
+        color: hsla(200, 10%, 50%, 1);
+        padding: 1rem;
+    }
+
+    .app__header__particles,
+    .app__footer__particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        user-select: none;
+    }
+
+    /* menu... */
+    .app__menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 3;
+        padding: 1rem;
+    }
+
+    .app__menu__item {
+        line-height: 1rem;
+        width: 100%;
+        text-align: right;
+        font-size: 0.625rem;
+        border-right: 1px solid hsla(200, 10%, 50%, 1);
+        transition: all .2s ease-in-out;
+        user-select: none;
+    }
+
+    .app__menu__item:not(:last-child) {
+        margin-bottom: 2px;
+    }
+
+    .app__menu__item a {
+        width: 100%;
+        display: block;
+        text-decoration: none;
+        color: hsla(200, 10%, 50%, 1);
+        padding: 0 0.5rem;
+        transform: scale(1);
+        transform-origin: right;
+        transition: all .2s ease-in-out;
+    }
+
+    .app__menu__item:hover {
+        border-color: hsla(200, 10%, 100%, 1);
+    }
+
+    .app__menu__item:hover a {
+        transform: scale(1.5);
+        color: hsla(200, 10%, 100%, 1);
+    }
+    
+    .app__menu--light .app__menu__item:hover {
+        border-color: hsla(200, 10%, 20%, 1);
+    }
+
+    .app__menu--light .app__menu__item:hover a {
+        color: hsla(200, 10%, 20%, 1);
+    }
+
+    /* footer... */
+    .app__footer {
+        text-align: center;
+        background: hsla(200, 50%, 5%, 1);
+        position: relative;
+        overflow: hidden;
+        color: hsla(200, 10%, 100%, 1);
+        display: flex;
+    }
+
+    .app__footer__container {
+        max-width: 80rem;
+        z-index: 1;
+        padding: 1rem;
+        margin: 0 auto;
+    }
+
+    .app__footer__conclusion {
+        font-size: 2rem;
+        color: hsla(200, 10%, 100%, 1);
+        font-weight: 300;
+    }
+
+    .app__footer__conclusion__container {
+        padding: 1rem;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .app__footer__conclusion__container p {
+        padding: 1rem;
+    }
+
+    .app__footer__bar {
+        border-top: 1px solid hsla(200, 50%, 10%, 1);
+        display: flex;
+        font-size: .8rem;
+        height: 5rem;
+        padding: 1rem;
+        align-items: center;
+    }
+
+    .app__footer__source {
+        text-align: left;
+        flex: 1;
+    }
+    
+    .app__footer__social {
+        display: flex;
+    }
+
+     /* source... */
+    .app__source {
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+    }
+
+    .app__source__container {
+        max-width: 80rem;
+        z-index: 1;
+        padding: 1rem;
+        margin: 0 auto;
+    }
+
+    /* section... */
+    .app__section {
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+     }
+
+     .app__section--top {
+         top: 0;
+     }
+
+     .app__section--bottom {
+         bottom: 0;
+     }
+
+    .app__section:after {
+        content: '';
+        display: block;
+        width: 300%;
+        height: 8rem;
+        background: hsla(200,100%,90%,1);
+        position: absolute;
+        z-index: -1;
+        transform: rotate(-3deg) translateX(-50%);
+        animation: glow 5s infinite;
+     }
+
+     .app__section--top:after {
+        bottom: 2rem;
+     }
+
+     .app__section--bottom:after {
+        bottom: -1rem;
+     }
+
+     .app__section:before {
+        content: '';
+        display: block;
+        width: 300%;
+        height: 8rem;
+        background: hsla(200, 10%, 100%, 1);
+        position: absolute;
+        z-index: 1;
+        transform: rotate(-2deg) translateX(-50%);
+     }
+     
+     .app__section--top:before {
+        bottom: 1rem;
+     }
+
+     .app__section--bottom:before {
+        bottom: -3rem;
+     }
+
+     @keyframes glow {
+        0% {
+            background-color: hsla(200,100%,90%,1); 
+        }
+        50% {
+            background-color: hsla(200,100%,80%,1);
+        }
+        100% {
+            background-color: hsla(200,100%,90%,1);
+        }
+    }
+
+    /* whitespace... */
+    .app__whitespace {
+        width: 100%;
+        height: 5rem;
+    }
+
+    /* icon... */
+    .icon {
+        display: inline-flex;
+    }
+
+    .icon svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+        stroke: currentColor;
+    }
+
+    .icon--l {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .icon--heart {
+        color: hsla(330, 80%, 50%, 1);
+    }
+
+    /* app authors... */
+    .app__authors {
+        padding: 1rem;
+    }
+
+    /* app links... */
+    .app__links {
+        padding: 1rem;
+        font-size: .625rem;
+    }
+</style>
+
+<body>
+    <div class="app" id="app">
+        <app-header></app-header>
+        <app-content v-bind:data="mabs"></app-content>
+        <app-footer></app-footer>
+        <app-source></app-source>
+    </div>
+</body>
+
+<script>
+    Vue.component('mab', {
+        props: ['data'],
+        template: `
+            <li class="mab">
+                <div class="mab__container">
+                    <div class="mab__company"><strong>{{ data.name }}</strong></div>
+                    <div class="mab__target"><span>{{ data.target }}</span></div>
+                    <div class="mab__disease"><span>{{ data.disease }}</span></div>
+                    <div class="mab__developer"><span>{{ data.developer }}</span></div>
+                    <div class="mab__approval"><span><span title="Food and Drug Administration">FDA<span> approval in {{ data.approval }}</span></div>
+                </div>
+            </li>
+        `
+    });
+
+    Vue.component('mabs', {
+        props: ['data'],
+        template: `
+            <li class="mabs" v-bind:id="data.date">
+                <div class="mabs__quantity" v-bind:style="{ width: 50 / (10 / data.mabs.length) + '%' }">
+                    <span class="mabs__quantity__number">{{ data.mabs.length }}</span>
+                    <strong class="mabs__date">{{ data.date }}</strong>
+                </div>
+                <div class="mabs__container">
+                    <ul class="mabs__list">    
+                        <mab v-for="item in data.mabs" v-bind:data="item"></mab>
+                    </ul>
+                </div>
+            </li>
+        `
+    });
+
+    Vue.component('app-header', {
+        template: `
+            <div class="app__header" id="app__header">
+                <div class="app__header__container">
+                    <div class="app__header__bar">
+                        <div class="app__header__bar__container">
+                            <a href="#" class="app__header__logo" title="mabs">
+                                <svg width="35px" height="32px" viewBox="0 0 35 32">
+                                    <g stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                        <g id="mabs" transform="translate(1.000000, 1.000000)" stroke-width="2">
+                                            <g transform="translate(18.979592, 0.000000)">
+                                                <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                            </g>
+                                            <g transform="translate(7.081633, 15.000000) scale(-1, 1) translate(-7.081633, -15.000000) translate(0.081633, 0.000000)">
+                                                <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </a>
+                            <div class="app__header__separator"></div>
+                            <div class="app__header__promotion">
+                                <span>Proposed by</span>
+                                <a href="http://labiotech.eu/" title="labiotech.eu"><img src="/assets/logo-header@2x.png" width="175px"/></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app__whitespace"></div>
+                    <div class="app__header__slogan">
+                        <div class="app__header__slogan__container">
+                            <h1 class="app__header__title">Which are the EMA approved therapeutic antibodies, their target and indications?</h1>
+                            <h2 class="app__header__description">The number of novel therapeutic antibodies that received EMA marketing approvals is growing year after year. Find here the EMA approved therapeutic antibodies that are currently marketed, ranked by the year of approval.</h2>
+                        </div>    
+                    </div>
+                    <div class="app__whitespace"></div>
+                    <div class="app__whitespace"></div> 
+                </div>
+                <div class="app__section app__section--bottom"></div>
+                <div class="app__header__particles" id="app__header__particles"></div>
+            </div>
+        `
+    });
+
+    Vue.component('app-footer', {
+        template: `
+            <div class="app__footer" id="app__footer">
+                <div class="app__section app__section--top"></div>
+                <div class="app__footer__container">
+                    <div class="app__whitespace"></div>
+                    <div class="app__whitespace"></div>
+                    <div class="app__footer__conclusion">
+                        <div class="app__footer__conclusion__container">
+                            <p>The increase in number of therapeutic antibodies in clinical studies is expected to drive trend toward first approvals for ~6-8 new antibodies per year. Thus, unmet medical need should be reduced and patient choices for antibody therapeutics should increase in the next ~ 8 years, which corresponds to the average time for an antibody to go through all the clinical phases.</p>
+                        </div>
+                    </div>
+                    <div class="app__whitespace"></div>
+                    <div class="app__whitespace"></div>
+                </div>
+                <div class="app__section app__section--bottom"></div>
+                <div class="app__footer__particles" id="app__footer__particles"></div>
+            </div>
+        `
+    });
+
+    Vue.component('app-source', {
+        template: `
+            <div class="app__source">
+                <div class="app__source__container">
+                    <div class="app__whitespace"></div>
+                    <span class="app__authors">
+                        <span>Made with <span class="icon icon--l icon--heart"><svg x="0px" y="0px" width="48px" height="48px" viewBox="0 0 48 48"><g ><path d="M34,2c-3.89551,0-7.54102,1.73389-10,4.69824C21.54102,3.73389,17.89551,2,14,2C6.83203,2,1,7.83154,1,15c0,12.33203,21.45312,30.02686,22.36719,30.77393C23.55078,45.9248,23.77539,46,24,46s0.44922-0.0752,0.63281-0.22607C25.54688,45.02686,47,27.33203,47,15C47,7.83154,41.16797,2,34,2z"/></g></svg></span> by</span>
+                        <a href="https://twitter.com/arnaudschlupp">Arnaud Schlupp</a>
+                        <span>and</span>
+                        <a href="https://www.linkedin.com/in/marie-godar-a5419756">Marie Godar</a>
+                    </span>
+                    <ul class="app__links">
+                        <li><a href="http://www.ema.europa.eu/ema">http://www.ema.europa.eu/ema</a>, consulted on December, 13 2016</li>
+                        <li><a href="http://www.fda.gov/Drugs">http://www.fda.gov/Drugs</a>, consulted on December, 13 2016</li>
+                    </ul>
+                    <div class="app__whitespace"></div>
+                </div>
+            </div>
+        `
+    });
+
+    Vue.component('app-content', {
+        props: ['data'],
+        template: `
+            <div class="app__content" id="app__content">
+                <div class="app__content__background">
+                    <div class="icon icon--1">
+                        <svg width="35px" height="32px" viewBox="0 0 35 32">
+                            <g stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g id="mabs" transform="translate(1.000000, 1.000000)" stroke-width="2">
+                                    <g transform="translate(18.979592, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                    <g transform="translate(7.081633, 15.000000) scale(-1, 1) translate(-7.081633, -15.000000) translate(0.081633, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="icon icon--2">
+                        <svg width="35px" height="32px" viewBox="0 0 35 32">
+                            <g stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g id="mabs" transform="translate(1.000000, 1.000000)" stroke-width="2">
+                                    <g transform="translate(18.979592, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                    <g transform="translate(7.081633, 15.000000) scale(-1, 1) translate(-7.081633, -15.000000) translate(0.081633, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="icon icon--3">
+                        <svg width="35px" height="32px" viewBox="0 0 35 32">
+                            <g stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g id="mabs" transform="translate(1.000000, 1.000000)" stroke-width="2">
+                                    <g transform="translate(18.979592, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                    <g transform="translate(7.081633, 15.000000) scale(-1, 1) translate(-7.081633, -15.000000) translate(0.081633, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="icon icon--4">
+                        <svg width="35px" height="32px" viewBox="0 0 35 32">
+                            <g stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g id="mabs" transform="translate(1.000000, 1.000000)" stroke-width="2">
+                                    <g transform="translate(18.979592, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                    <g transform="translate(7.081633, 15.000000) scale(-1, 1) translate(-7.081633, -15.000000) translate(0.081633, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="icon icon--5">
+                        <svg width="35px" height="32px" viewBox="0 0 35 32">
+                            <g stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g id="mabs" transform="translate(1.000000, 1.000000)" stroke-width="2">
+                                    <g transform="translate(18.979592, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                    <g transform="translate(7.081633, 15.000000) scale(-1, 1) translate(-7.081633, -15.000000) translate(0.081633, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="icon icon--6">
+                        <svg width="35px" height="32px" viewBox="0 0 35 32">
+                            <g stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g id="mabs" transform="translate(1.000000, 1.000000)" stroke-width="2">
+                                    <g transform="translate(18.979592, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                    <g transform="translate(7.081633, 15.000000) scale(-1, 1) translate(-7.081633, -15.000000) translate(0.081633, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="icon icon--7">
+                        <svg width="35px" height="32px" viewBox="0 0 35 32">
+                            <g stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g id="mabs" transform="translate(1.000000, 1.000000)" stroke-width="2">
+                                    <g transform="translate(18.979592, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                    <g transform="translate(7.081633, 15.000000) scale(-1, 1) translate(-7.081633, -15.000000) translate(0.081633, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="icon icon--8">
+                        <svg width="35px" height="32px" viewBox="0 0 35 32">
+                            <g stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                <g id="mabs" transform="translate(1.000000, 1.000000)" stroke-width="2">
+                                    <g transform="translate(18.979592, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                    <g transform="translate(7.081633, 15.000000) scale(-1, 1) translate(-7.081633, -15.000000) translate(0.081633, 0.000000)">
+                                        <path d="M13.912229,29.8254145 L13.912229,11.1137281 L2.83456668,0.0360658646 M0.0726884866,3.03890306 L7.011464,10.0208344 L0.0726884866,3.03890306 Z" id="Path-2" transform="translate(6.992459, 14.930740) scale(-1, 1) translate(-6.992459, -14.930740) "></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <ul class="app__menu">
+                    <li class="app__menu__item" v-for="item in data"><a v-bind:href="'#' + item.date">{{ item.date }}</a></li>
+                </ul>
+                <ul class="app__content__container">
+                    <mabs v-for="item in data" v-bind:data="item"></mabs>
+                </ul>
+            </div>
+        `
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            mabs: [
+                {
+                    date: '2016',
+                    mabs: [
+                        {
+                            name: 'Olaratumab (LARTRUVO)',
+                            target: 'Human anti-PDGFRα IgG1',
+                            disease: 'Soft tissue sarcoma',
+                            developer: 'ImClone Systems / Eli Lilly',
+                            approval: '2016'
+                        },
+                        {
+                            name: 'Daclizumab (ZINBRYTA)',
+                            target: 'anti-IL-2R IgG1',
+                            disease: 'Multiple sclerosis; Prevention of renal transplant rejection',
+                            developer: 'PDL BioPharma / AbbVie / Biogen',
+                            approval: '2016'
+                        },
+                        {
+                            name: 'Reslizumab (CINQAERO, CINQAIR)',
+                            target: 'Humanized anti-IL-5 IgG4',
+                            disease: 'Eosinophilic asthma',
+                            developer: 'Celltech R&D / Schering-Plough / Teva Pharmaceutical Industries',
+                            approval: '2016'
+                        },
+                        {
+                            name: 'Ixekizumab (TALTZ)',
+                            target: 'Humanized anti-IL-17A IgG4',
+                            disease: 'Plaque psoriasis ',
+                            developer: 'Eli Lilly',
+                            approval: '2016'
+                        },
+                        {
+                            name: 'Elotuzumab (EMPLICITI)',
+                            target: 'Humanized anti-SLAMF7 IgG1',
+                            disease: 'Multiple myeloma',
+                            developer: 'PDL BioPharma / AbbVie / Bristol-Myers Squibb',
+                            approval: '2015'
+                        }
+                    ]
+                },
+                {
+                    date: '2015',
+                    mabs: [
+                        {
+                            name: 'Necitumumab (PORTRAZZA)',
+                            target: 'Human anti-EGFR IgG1',
+                            disease: 'Squamous non-small cell lung cancer ',
+                            developer: 'ImClone Systems / Ely Lilly',
+                            approval: '2015'
+                        },
+                        {
+                            name: 'Idarucizumab (PRAXBIND)',
+                            target: 'Humanized anti-dabigatran Fab fragment',
+                            disease: 'Blood coagulation disorders',
+                            developer: 'Boehringer Ingelheim',
+                            approval: '2015'
+                        },
+                        {
+                            name: 'Mepolizumab (NUCALA)',
+                            target: 'Humanized anti-IL-5 IgG1',
+                            disease: 'Eosinophilic asthma',
+                            developer: 'GlaxoSmithKline / McMaster University',
+                            approval: '2015'
+                        },
+                        {
+                            name: 'Alirocumab (PRALUENT)',
+                            target: 'Human anti-PCSK9 IgG1',
+                            disease: 'Hypercholesterolaemia',
+                            developer: 'Regeneron Pharmaceuticals / Sanofi-aventis',
+                            approval: '2015'
+                        },
+                        {
+                            name: 'Evolocumab (REPATHA)',
+                            target: 'Human anti-PCSK9 IgG2',
+                            disease: 'Hypercholesterolaemia',
+                            developer: 'Amgen / Amgen Astellas BioPharma',
+                            approval: '2015'
+                        },
+
+                        {
+                            name: 'Dinutuximab (UNITUXIN)',
+                            target: 'Human/mouse chimeric anti-GD2 IgG1',
+                            disease: 'Neuroblastoma',
+                            developer: 'National Cancer Institute (USA) / St. John of God Foundation / United Therapeutics Corporation',
+                            approval: '2015'
+                        },
+
+                        {
+                            name: 'Secukinumab (COSENTYX)',
+                            target: 'Human anti-IL-17A IgG1',
+                            disease: 'Ankylosing spondylitis; Psoriasis arthritis; Plaque psoriasis ',
+                            developer: 'Alcon / Novartis / Icahn School of Medicine at Mount Sinai',
+                            approval: '2015'
+                        },
+                        {
+                            name: 'Nivolumab (OPDIVO)',
+                            target: 'Human anti-PD-1 IgG4',
+                            disease: 'Malignant melanoma; Non-small cell lung cancer; Renal cell carcinoma',
+                            developer: 'AIO Studien gGmbH / Bristol-Myers Squibb / Duke University Medical Center / Eli Lilly / Grupo Espanol Multidisciplinar de Melanoma / Incyte Corporation / Janssen Research & Development / Kyoto University / Kyowa Hakko Kirin / Medarex / National Cancer Institute (USA) / Nektar Therapeutics / Neon Therapeutics / Netherlands Cancer Institute / Ono Pharmaceutical / Pharmacyclics / Seattle Genetics / Sidney Kimmel Comprehensive Cancer Center at Johns Hopkins / University of Texas M. D. Anderson Cancer Center',
+                            approval: '2014'
+                        },
+                        {
+                            name: 'Blinatumomab (BLINCYTO) ',
+                            target: 'Murine anti-CD19/CD3 bispecific tandem scFv',
+                            disease: 'Acute lymphoblastic leukemia ',
+                            developer: 'Amgen / Astellas Pharma / M. D. Anderson Cancer Center / Micromet Inc / National Cancer Institute (USA)',
+                            approval: '2014'
+                        },
+                        {
+                            name: 'Pembrolizumab (KEYTRUDA)',
+                            target: 'Humanized anti-PD-1 IgG4 Malignant melanoma; Non-small cell lung cancer',
+                            disease: 'Advaxis / Amgen / BioLineRx / Canadian Cancer Trials Group / Dana-Farber Cancer Institute / DNAtrix / Eli Lilly / Fox Chase Cancer Center / Genexine / Hoosier Cancer Research Network / ImmunoGen / Incyte Corporation / M. D. Anderson Cancer Center / Massachusetts General Hospital / Memorial',
+                            developer: 'Sloan-Kettering Cancer Center / Merck & Co / National Cancer Institute (USA) / Northwestern University / Plexxikon / Providence Health & Services / Sidney Kimmel Comprehensive Cancer Center at Johns Hopkins / The Leukemia & Lymphoma Society / TG Therapeutic Inc / University of Birmingham / University of Pittsburgh / Washington University School of Medicine / Yale University',
+                            approval: '2014'
+                        }
+                    ]
+                },
+                {
+                    date: '2014',
+                    mabs: [
+                        {
+                            name: 'Ramucirumab (CYRAMZA)',
+                            target: 'Human anti-VEGFR-2 IgG1',
+                            disease: 'Gastric cancer; Metastatic colorectal cancer; Non-small cell lung cancer ',
+                            developer: 'AstraZeneca / Dyax / Eli Lilly / Merck Sharp & Dohme / University of Texas M. D. Anderson Cancer Center',
+                            approval: '2014'
+                        },
+                        {
+                            name: 'Vedolizumab (ENTYVIO)',
+                            target: 'Humanized anti-α4β7 integrin IgG1 ',
+                            disease: 'Crohn’s disease; Ulcerative colitis ',
+                            developer: 'Millennium Pharmaceuticals / Takeda / Takeda Oncology ',
+                            approval: '2014'
+                        },
+                        {
+                            name: 'Siltuximab (SYLVANT)',
+                            target: 'Human/mouse chimeric anti-IL-6 IgG1 ',
+                            disease: 'Multricetric Castleman’s disease ',
+                            developer: 'Centocor / Janssen Biotech',
+                            approval: '2014'
+                        },
+                        {
+                            name: 'Obinutuzumab (GAZYVA)',
+                            target: 'Glycoengineered humanized anti-CD20 IgG1',
+                            disease: 'Chronic lymphocytic leukaemia; Follicular lymphoma ',
+                            developer: 'GLYCART Biotechnology / Biogen Idec / Chugai Pharmaceutical / Dana-Farber Cancer Institute / Genentech / Nippon Shinyaku / OHSU Knight Cancer Institute / Roche',
+                            approval: '2013'
+                        }
+                    ]
+                },
+                {
+                    date: '2013',
+                    mabs: [
+                        {
+                            name: 'Alemtuzumab (LEMTRADA)',
+                            target: 'Humanized anti-CD52 IgG1 ',
+                            disease: 'Multiple sclerosis ',
+                            developer: 'Withdrawn or marketing discontinued for the first approved indication',
+                            approval: '2014'
+                        },
+                        {
+                            name: 'Ado-trastuzumab emtansine (KADCYLA)',
+                            target: 'Humanized ADC anti-HER2 IgG1 ',
+                            disease: 'Breast cancer ',
+                            developer: 'Chugai Pharmaceutical / Genentech / ImmunoGen / Memorial Sloan-Kettering Cancer Center / Roche',
+                            approval: '2013'
+                        },
+                        {
+                            name: 'Pertuzumab (PERJETA)',
+                            target: 'Humanized anti-HER2 IgG1 ',
+                            disease: 'Breast Cancer ',
+                            developer: 'Chugai Pharmaceutical / FONDAZIONE DEL PIEMONTE PER L\'ONCOLOGIA IRCC DI CANDIOLO / Genentech / Japan Breast Cancer Research Group / Roche / West German Study Group',
+                            approval: '2012'
+                        }
+                    ]
+                },
+                {
+                    date: '2012',
+                    mabs: [{
+                        name: 'Brentuximab vedotin (ADCETRIS)',
+                        target: 'Human/mouse chimeric ADC anti-CD30 IgG1 ',
+                        disease: 'Hodgkin lymphoma; Systemic anaplastic large cell lymphoma ',
+                        developer: 'Bristol-Myers Squibb / Fondazione Italiana Linfomi / Lymphoma Academic Research Organisation / Seattle Genetics / Takeda / Takeda Oncology'
+                    }]
+                },
+                {
+                    date: '2011',
+                    mabs: [
+                        {
+                            name: 'Belimumab (BENLYSTA)',
+                            target: 'Human anti-BLyS IgG1 ',
+                            disease: 'Systemic lupus erythematosus ',
+                            developer: 'Assistance Publique Hopitaux de Paris / Cancer Trials Australia / Cambridge Antibody Technology / GlaxoSmithKline / Hospital for Special Surgery / Human Genome Sciences / North Shore-Long Island Jewish Health System / University of Pennsylvania',
+                            approval: '2011'
+                        },
+
+                        {
+                            name: 'Ipilimumab (YERVOY)',
+                            target: 'Human anti-CTLA-4 IgG1 ',
+                            disease: 'Malignant melanoma ',
+                            developer: 'Bristol-Myers Squibb / Dana-Farber Cancer Institute / European Thoracic Oncology Platform / Grupo Espanol Multidisciplinar de Melanoma / Ludwig Institute for Cancer Research / Medarex / Memorial Sloan-Kettering Cancer Center / Ono Pharmaceutical / University of California at San Francisco / University of Texas M. D. Anderson Cancer Center',
+                            approval: '2011'
+                        }
+                    ]
+                },
+                {
+                    date: '2010',
+                    mabs: [
+                        {
+                            name: 'Denosumab (PROLIA)',
+                            target: 'Human anti-RANKL IgG2 ',
+                            disease: 'Bone disorders; Male osteoporosis; Osteoporosis; Postmenopausal osteoporosis',
+                            developer: 'Amgen / Daiichi Sankyo Company / European Thoracic Oncology Platform / GlaxoSmithKline',
+                            approval: '2010'
+                        },
+
+                        {
+                            name: 'Ofatumumab (ARZERRA)',
+                            target: 'Human anti-CD20 IgG1 ',
+                            disease: 'Chronic lymphocytic leukemia ',
+                            developer: 'Genmab / GlaxoSmithKline / National Cancer Centre (Singapore) / Novartis / Roswell Park Cancer Institute / University Health Network',
+                            approval: '2009'
+                        }
+                    ]
+                },
+                {
+                    date: '2009',
+                    mabs: [
+                        {
+                            name: 'Tocilizumab (ROACTEMRA)',
+                            target: 'Humanized anti-IL-6R IgG1 ',
+                            disease: 'Active systemic juvenile idiopathic arthritis; Juvenile idiopathic polyarthritis; Rheumatoid arthritis ',
+                            developer: 'Assistance Publique Hopitaux de Paris / Chugai Pharmaceutical / Hospital for Special Surgery / JW Pharmaceutical / Osaka University / Roche / University Hospital Inselspital / University of Bern / University of Pittsburgh',
+                            approval: '2010'
+                        },
+
+                        {
+                            name: 'Canakinumab (ILARIS)',
+                            target: 'Human anti-IL-1β IgG1 ',
+                            disease: 'Cryopyrin-associated periodic syndromes; Gouty arthritis; Still’s disease',
+                            developer: 'Novartis / Triemli hospital / University Hospital Tubingen / University Hospital Zurich ',
+                            approval: '2009'
+                        },
+
+                        {
+                            name: 'Golimumab (SIMPONI)',
+                            target: 'Human anti-TNF-α IgG1 ',
+                            disease: 'Axial spondyloarthritis; Polyarticular juvenile; Psoriatic arthritis; Rheumatoid arthritis; Ulcerative colitis idiopathic arthritis',
+                            developer: 'Centocor / Centocor Ortho Biotech / Janssen Biotech / Janssen Pharmaceutical KK / Merck & Co / Medarex / Mitsubishi Tanabe Pharma Corporation',
+                            approval: '2009'
+                        },
+
+                        {
+                            name: 'Ustekinumab (STELARA)',
+                            target: 'Human anti-IL-12/23 IgG1 ',
+                            disease: 'Crohn’s disease; Plaque psoriasis; Psoriatic arthritis',
+                            developer: 'Centocor / Janssen Biotech / Janssen Pharmaceutical KK / Janssen-Cilag / Medarex',
+                            approval: '2009'
+                        },
+
+                        {
+                            name: 'Certolizumab pegol (CIMZIA)',
+                            target: 'Humanized PEGylated anti-TNF-α Fab fragment',
+                            disease: 'Axial spondyloarthritis; Psoriatic arthritis; Rheumatoid arthritis ',
+                            developer: 'Astellas Pharma / Dermira / UCB / University of Southampton',
+                            approval: '2009'
+                        }]
+                },
+                {
+                    date: '2007',
+                    mabs: [{
+                        name: 'Eculizumab (SOLIRIS)',
+                        target: 'Humanized anti-complement C5 IgG2/4 ',
+                        disease: 'Atypical haemolytic uremic syndrome; Paroxysmal nocturnal haemoglobinuria ',
+                        developer: 'Alexion Pharmaceuticals / Brigham and Women’s Hospital / Chiba University',
+                        approval: '2007'
+                    },
+
+                    {
+                        name: 'Ranibizumab (LUCENTIS)',
+                        target: 'Fab fragment derived from Bevacizumab, a humanized anti-VEGF IgG1 (AVASTIN)',
+                        disease: 'Age-related macular degeneration; Choroidal neovascularisation; Macular oedema ',
+                        developer: 'Genentech / Manhattan Eye, Ear & Throat Hospital / Novartis Ophthalmics / University of Bonn',
+                        approval: '2006'
+                    },
+
+                    {
+                        name: 'Panitumumab (VECTIBIX)',
+                        target: 'Human anti-EGFR IgG2 ',
+                        disease: 'Colorectal cancer; Rectum cancer',
+                        developer: 'Amgen / Takeda / University of Texas M. D. Anderson Cancer Center',
+                        approval: '2006'
+                    }
+                    ]
+                },
+
+                {
+                    date: '2006',
+                    mabs: [
+                        {
+                            name: 'Natalizumab (TYSABRI)',
+                            target: 'Humanized anti-α4-integrin IgG4 ',
+                            disease: 'Multiple sclerosis ',
+                            developer: 'Biogen / Biogen Idec / Elan Corporation / Perrigo',
+                            approval: '2004'
+                        }
+                    ]
+                },
+
+                {
+                    date: '2005',
+                    mabs: [{
+                        name: 'Bevacizumab (AVASTIN)',
+                        target: 'Humanized anti-VEGF IgG1 ',
+                        disease: 'Cancer of the cervix; Cancer of the colon or rectum; Cancer of the fallopian tube; Cancer of the peritoneum; Epithelial cancer of the ovary; Kidney cancer; Metastatic breast cancer; Non-small cell lung cancer',
+                        developer: 'All Ireland Cooperative Oncology Research Group/ Austrian Breast & Colorectal Cancer Study Group/ Beth Israel Deaconess Medical Center/ Breast Cancer Research Foundation/ Brigham and Women\'s Hospital/ Cancer and Leukemia Group B/ Cancer Research UK/ Chugai Pharmaceutical/ Dana-Farber Cancer Institute/ Duke University/ European Organisation for Research and Treatment of Cancer/ European Thoracic Oncology Platform/ Genentech/ Hackensack University Medical Center/ Japan Breast Cancer Research Group/ Massachusetts General Hospital/ Medical University of South Carolina/ Melanoma Research Foundation Breakthrough Consortium/ Memorial Sloan-Kettering Cancer Center/ National Cancer Institute (USA) / National Comprehensive Cancer Network/ NCIC Clinical Trials Group/ North Central Cancer Treatment Group/ NSABP Foundation/ Peter MacCallum Cancer Centre/ Roche / Royal Marsden NHS Foundation Trust/ Sanofi / Sarcoma Alliance for Research through Collaboration/ SCRI Development Innovations/ South Eastern European Research Oncology Group/ Spanish Cooperative Group for Digestive Tumour Therapy/ Spanish Lung Cancer Group/ Stanford University School of Medicine/ SWOG / The Catalan Institute of Oncology/ University College London/ University of Alabama at Birmingham/ University of Arkansas System/ University of California, Davis/ University of Tennessee/ University of Texas M. D. Anderson Cancer Center/ US Oncology Research/ West German Study Group/ Xijing Hospital',
+                        approval: '2004'
+                    },
+
+                    {
+                        name: 'Omalizumab (XOLAIR)',
+                        target: 'Humanized anti-IgE IgG1',
+                        disease: 'Chronic (long-term) spontaneous urticarial; Severe persistent asthma',
+                        developer: 'Genentech / Novartis',
+                        approval: '2003'
+                    }]
+                },
+
+                {
+                    date: '2004',
+                    mabs: [
+                        {
+                            name: 'Cetuximab (ERBITUX)',
+                            target: 'Human/mouse chimeric anti-EGFR IgG1 ',
+                            disease: 'Colorectal or rectal cancer; Head and neck cancer',
+                            developer: 'Array BioPharma / Bristol-Myers Squibb / Centre Jean Perrin / Eli Lilly / Merck KGaA / New York University School of Medicine / Novartis / Pierre Fabre / Roche / University of California System / University of Michigan Comprehensive Cancer Center',
+                            approval: '2004'
+                        },
+
+                        {
+                            name: 'Ibritumomab tiuxetan (ZEVALIN)',
+                            target: 'Murine anto-CD20 IgG1 ',
+                            disease: 'Non-Hodgkin’s lymphoma ',
+                            developer: 'Bayer Yakuhin / Biogen / Biogen Idec / CASI Pharmaceuticals / Dana-Farber Cancer Institute / Schering Korea / Spectrum Pharmaceuticals / Tufts-New England Medical Center',
+                            approval: '2002'
+                        }]
+                },
+                {
+                    date: '2003',
+                    mabs: [{
+                        name: 'Adalimumab (HUMIRA)',
+                        target: 'Human anti-TNF-α IgG1 ',
+                        disease: 'Axial spondyloarthritis; Crohn’s disease; Enthesitis-related arthritis; Hidradenitis suppurativa; Non-infectious uveitis; Polyarticular juvenile idiopathic arthritis; Psoriatic arthritis; Rheumatoid arthritis; Ulcerative colitis',
+                        developer: 'AbbVie/ Cambridge Antibody Technology / Eisai Co Ltd / Interstitial Cystitis Study ',
+                        approval: '2002'
+                    }]
+                },
+
+                {
+                    date: '2000',
+                    mabs: [{
+                        name: 'Trastuzumab (HERCEPTIN)',
+                        target: 'Humanized anti-HER2 IgG1 ',
+                        disease: 'Breast cancer; Gastric cancer',
+                        developer: 'Chugai Pharmaceutical / Dana-Farber Cancer Institute / FONDAZIONE DEL PIEMONTE PER L\'ONCOLOGIA IRCC DI CANDIOLO / Genentech / Memorial Sloan-Kettering Cancer Center / Northwestern University / Roche / Sanofi / West German Study Group',
+                        approval: '1998'
+                    }]
+                },
+
+
+                {
+                    date: '1999',
+                    mabs: [{
+                        name: 'Infliximab (REMICADE)',
+                        target: 'Human/mouse chimeric anti-TNF-α IgG1 ',
+                        disease: 'Ankylosing spondylitis; Crohn\'s disease; Psoriasis; Psoriatic arthritis; Rheumatoid arthritis; Ulcerative colitis',
+                        developer: 'Centocor / Janssen Biotech / Merck & Co / Mitsubishi Tanabe Pharma Corporation / National Jewish Medical and Research Center / Xian-Janssen',
+                        approval: '1998'
+                    },
+
+                    {
+                        name: 'Palivizumab (SYNAGIS)',
+                        target: 'Humanized anti-RSV IgG1 ',
+                        disease: 'Prevention of the respiratory syncytial virus infections',
+                        developer: 'MedImmune',
+                        approval: '1998'
+                    }
+                    ]
+                },
+
+                {
+                    date: '1998',
+                    mabs: [
+                        {
+                            name: 'Basiliximab (SIMULECT)',
+                            target: 'Human/mouse chimeric anti-IL-2R IgG1 ',
+                            disease: 'Prevention of the renal transplant rejection; Transplant rejection',
+                            developer: 'Cerimon Pharmaceuticals / Novartis ',
+                            approval: '1998 '
+                        },
+                        {
+                            name: 'Rituximab (MABTHERA)',
+                            target: 'Human/mouse chimeric anti-CD20 IgG1 ',
+                            disease: 'Chronic lymphocytic leukaemia; Diffuse large B cell non-Hodgkin’s lymphoma; Follicular lymphoma; Microscopic polyangiitis; Rheumatoid arthritis; Wegener\'s granulomatosis',
+                            developer: 'Biogen / Biogen Idec / Chugai Pharmaceutical / Genentech / Halozyme Therapeutics / Hoosier Cancer Research Network / Oregon Health & Science University / Roche / SCRI Development Innovations / Takeda Oncology / University of Texas M. D. Anderson Cancer Center / University of Tours/ Zenyaku Kogyo',
+                            approval: '1997'
+                        }
+                    ]
+                },
+
+                {
+                    date: '1995',
+                    mabs: [{
+                        name: 'Abciximab (REOPRO)',
+                        target: 'Human/mouse chimeric anti-glycoprotein IIb/IIIa receptor Fab fragment',
+                        disease: 'Myocardial infarction; Prevention of blood clots in angioplasty; Unstable angina',
+                        developer: 'Centocor / Eli Lilly / Janssen Biotech',
+                        approval: '1994'
+                    }]
+                }
+            ]
+        }
+    });
+
+    // Particles effects...
+    particlesJS.load('app__header__particles', '/settings/particles.json', () => { });
+    particlesJS.load('app__footer__particles', '/settings/particles.json', () => { });
+
+    // Scroll class toggles...
+    const app__headerHeight = document.querySelector('#app__header').clientHeight;
+    const app__contentHeight = document.querySelector('#app__content').clientHeight;
+    const app__menu = document.querySelector('.app__menu');
+    const app__menuClass = 'app__menu--light'
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > app__headerHeight && window.scrollY < (app__headerHeight + app__contentHeight)) {
+            app__menu.classList.add(app__menuClass);
+        } else {
+            app__menu.classList.remove(app__menuClass);
+        }
+    });        
+</script>
+
+</html>
