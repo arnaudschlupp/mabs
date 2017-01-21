@@ -621,7 +621,7 @@
             template: `
             <li class="mabs" v-bind:id="data.date">
                 {{ data.something }}
-                <div class="mabs__quantity" v-bind:style="{ width: 50 / (11 / data.mabs.length) + '%' }">
+                <div class="mabs__quantity" v-bind:style="{ width: 50 / (10 / data.mabs.length) + '%' }">
                     <span class="mabs__quantity__number">{{ data.mabs.length }}</span>
                     <strong class="mabs__date">{{ data.date }}</strong>
                 </div>
@@ -888,6 +888,13 @@
                                 disease: 'Multiple myeloma',
                                 developer: 'AbbVie / Bristol-Myers Squibb / PDL BioPharma',
                                 approval: '2015'
+                            },
+                            {
+                                name: 'Daratumumab (DARZALEX)',
+                                target: 'Human anti-CD38 IgG1',
+                                disease: 'Multiple myeloma',
+                                developer: 'Genmab / Janssen Biotech / Janssen Research & Development',
+                                approval: '2015'
                             }
                         ]
                     },
@@ -943,13 +950,6 @@
                                 target: 'Human anti-IL-17A IgG1',
                                 disease: 'Ankylosing spondylitis; Plaque psoriasis; Psoriasis arthritis',
                                 developer: 'Alcon / Novartis / Icahn School of Medicine at Mount Sinai',
-                                approval: '2015'
-                            },
-                            {
-                                name: 'Daratumumab (DARZALEX)',
-                                target: 'Human anti-CD38 IgG1',
-                                disease: 'Multiple myeloma',
-                                developer: 'Genmab / Janssen Biotech / Janssen Research & Development',
                                 approval: '2015'
                             },
                             {
